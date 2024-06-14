@@ -1,0 +1,41 @@
+{
+	"accountId": "20001",
+    "holders": [
+        {
+            "customerId": "customer0000004",
+            "relationship": "SOLE_OWNER",
+            "name": {
+                "first": "Ernest",
+                "middle": "Miller",
+                "last": "Hemingway",
+                "suffix": "IV"
+            }
+        }
+    ],
+    "emails": [
+        "ernest.m.hemingway@domain.tld"
+    ],
+    "addresses": [
+        {
+            "type": "HOME",
+            "line1": "1850 N Clark St",
+            "line2": "no. 103",
+            "city": "Chicago",
+            "region": "IL",
+            "postalCode": "60614",
+            "country": "US"
+        }
+    ],
+    "telephones": [
+        {
+            "type": "HOME",
+            "country": "1",
+            "number": "3127771926"
+        },
+        {
+            "type": "CELL",
+            "country": "53",
+            "number": "45915607"
+        }
+    ]
+}

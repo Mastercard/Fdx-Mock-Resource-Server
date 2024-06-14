@@ -1,0 +1,86 @@
+{
+    "page": {
+        "total": 6
+    },
+    "transactions": [
+        {
+            "accountId": "5326884",
+            "transactionId": "46322",
+            "postedTimestamp": "2020-12-25",
+            "description": "AUTO DEBIT PMT",
+            "amount": 137.91,
+            "checkNumber": "",
+            "transactionType": "FEE",
+            "paymentDetails": {
+                "principalAmount": 0,
+                "interestAmount": 137.91,
+                "feesAmount": 0
+            }
+        },
+        {
+            "accountId": "5326884",
+            "transactionId": "65432",
+            "postedTimestamp": "2019-11-25",
+            "description": "AUTO DEBIT PMT",
+            "amount": 142.5,
+            "checkNumber": "",
+            "paymentDetails": {
+                "principalAmount": 0,
+                "interestAmount": 142.5,
+                "feesAmount": 0
+            }
+        },
+        {
+            "accountId": "5326884",
+            "transactionId": "24577",
+            "postedTimestamp": "2019-11-01",
+            "description": "RATE CHANGE",
+            "amount": 0,
+            "checkNumber": "",
+            "paymentDetails": {
+                "principalAmount": 0,
+                "interestAmount": 0,
+                "feesAmount": 0
+            }
+        },
+        {
+            "accountId": "5326884",
+            "transactionId": "246876",
+            "postedTimestamp": "2019-10-25",
+            "description": "AUTO DEBIT PMT",
+            "amount": 292.21,
+            "checkNumber": "",
+            "paymentDetails": {
+                "principalAmount": 0,
+                "interestAmount": 142.21,
+                "feesAmount": 150
+            }
+        },
+        {
+            "accountId": "5326884",
+            "transactionId": "23577",
+            "postedTimestamp": "2019-10-01",
+            "description": "RATE CHANGE",
+            "amount": 142.5,
+            "checkNumber": "",
+            "paymentDetails": {
+                "principalAmount": 0,
+                "interestAmount": 0,
+                "feesAmount": 0
+            }
+        },
+        {
+            "accountId": "5326884",
+            "transactionId": "324679",
+            "postedTimestamp": "2019-09-25",
+            "description": "AUTO DEBIT PMT",
+            "amount": 146.95,
+            "checkNumber": "",
+            "paymentDetails": {
+                "principalAmount": 0,
+                "interestAmount": 146.95,
+                "feesAmount": 0
+            }
+        }
+    ]
+}

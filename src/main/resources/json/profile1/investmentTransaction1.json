@@ -1,0 +1,53 @@
+[
+    {
+        "accountId": "4568922",
+        "accountCategory": "INVESTMENT_ACCOUNT",
+        "transactionId": "2019062",
+        "postedTimestamp": "2019-06-21T12:00:00.000Z",
+        "transactionTimestamp": "2019-06-21T12:00:00.000Z",
+        "description": "JPM PURCHASE 10 STOCKS",
+        "debitCreditMemo": "DEBIT",
+        "status": "POSTED",
+        "accruedInterest": 0,
+        "commission": 0,
+        "incomeType": "CGLONG",
+        "positionType": "LONG",
+        "price": 18105.2,
+        "securityId": "46625H100",
+        "securityType": "STOCK",
+        "symbol": "JPM",
+        "transactionType": "PURCHASED",
+        "unitPrice": 110.52,
+        "units": 10
+    },
+    {
+        "accountId": "4568922",
+        "accountCategory": "INVESTMENT_ACCOUNT",
+        "transactionId": "000000000000016",
+        "description": "REINVESTMENT",
+        "postedTimestamp": "2020-10-31T05:00:00.000Z",
+        "category": "Dividend",
+        "amount": -1581.66,
+        "price": 109.64,
+        "securityId": "UIITX",
+        "securityIdType": "CUSIP",
+        "securityType": "OTHER",
+        "symbol": "UIITX",
+        "subAccountSec": "OTHER",
+        "units": 14.254
+    },
+    {
+        "accountId": "4568922",
+        "accountCategory": "INVESTMENT_ACCOUNT",
+        "transactionId": "000000000000015",
+        "description": "DIVIDEND RECEIVED",
+        "postedTimestamp": "2020-11-03T05:00:00.000Z",
+        "category": "Dividend",
+        "amount": 1551.66,
+        "securityId": "UIITX",
+        "securityIdType": "CUSIP",
+        "securityType": "OTHER",
+        "symbol": "UIITX",
+        "subAccountSec": "OTHER"
+    }
+]

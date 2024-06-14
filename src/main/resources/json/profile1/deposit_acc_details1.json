@@ -1,0 +1,40 @@
+ {
+		"accountId": "6468990",
+		"accountCategory": "DEPOSIT_ACCOUNT",
+		"accountType": "SAVING",
+		"displayName": "******4567",
+		"status": "OPEN",
+		"productName":"Cash Management",
+		"currency": {
+			"currencyRate": null,
+			"currencyCode": "USD",
+			"originalCurrencyCode": "USD"
+		},
+		"interestYtd": 14.15,
+		"maturityDate": "2020-11-09T00:00:00.000-0500",
+		"annualPercentageYield": 0.45,
+		"description": "My Saving Acc XXXX4567",
+		"nickname": "My Saving Acc XXXX4567",
+		"lineOfBusiness": "RETAIL",
+		"accountNumber": "7000003223",
+		"accountNumberDisplay": "4567",
+		"routingTransitNumber": "557904323",
+		"balanceType": "ASSET",
+		"lastActivityDate": "2020-11-09T00:00:00.000-0500",
+		"transactionsIncluded": false,
+		"balanceAsOf": "2020-12-07T01:06:15.649-0500",
+		"currentBalance": 5678,
+		"availableBalance": 5678,
+		"openingDayBalance": 500,
+		"fiAttributes": [
+			{
+				"name": "interestPaidLastYear",
+				"value": "14.08"
+			},
+			{
+				"name": "interestPayoutFrequency",
+				"value": "Annually (And At Maturity)"
+			}
+		]
+
+}

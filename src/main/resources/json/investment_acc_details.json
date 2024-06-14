@@ -1,0 +1,180 @@
+{
+    "accountId": 3746272,
+    "error": null,
+    "accountType": "BROKERAGE",
+    "accountNumber": "4623054403",
+    "accountNumberDisplay": "...4403",
+    "accountCategory": "INVESTMENT_ACCOUNT",
+    "productName": "Invest Trade",
+    "nickname": "My Investment Acc XXXXX4403",
+    "status": "OPEN",
+    "description": "My Investment Acc XXXXX4403",
+    "currency": {
+        "currencyCode": "USD"
+    },
+    "fiAttributes": [],
+    "balanceList": [
+        {
+            "balanceDate": "2019-07-09T12:00:00.000Z",
+            "balanceDescription": "Cash account",
+            "balanceName": "Cash (1)",
+            "balanceType": "AMOUNT",
+            "balanceValue": 381.31
+        },
+        {
+            "balanceDate": "2019-07-09T12:00:00.000Z",
+            "balanceDescription": "Trade account",
+            "balanceName": "Trade (1)",
+            "balanceType": "AMOUNT",
+            "balanceValue": 3132.03
+        }
+    ],
+    "holdings": [
+        {
+            "securityId": "46625H100",
+            "securityIdType": "CUSIP",
+            "holdingName": "JPMorgan Chase & Co.",
+            "holdingType": "STOCK",
+            "positionType": "LONG",
+            "heldInAccount": "CASH",
+            "description": "JPM STOCK",
+            "symbol": "JPM",
+            "currentUnitPrice": 113.35,
+            "currentUnitPriceDate": "2019-07-09T12:00:00.000Z",
+            "units": 10,
+            "marketValue": 1133.5,
+            "faceValue": 1033.23,
+            "averageCost": true,
+            "cashAccount": false,
+            "rate": 1.6,
+            "expirationDate": "2019-07-09T12:00:00.000Z",
+            "assetClasses": {
+                "assetClass": "Cash",
+                "percent": 38.838623453393
+            },
+            "debtSecurity": {
+                "parValue": 100,
+                "yieldToMaturity": 0
+            },
+            "optionSecurity": {
+                "optionType": "call",
+                "strikePrice": 5,
+                "expireDate": "2019-07-09T12:00:00.000Z",
+                "sharesPerContract": 100
+            }
+        },
+        {
+            "securityId": "46625H100",
+            "securityIdType": "CUSIP",
+            "holdingName": "JPMorgan Chase & Co.",
+            "holdingType": "STOCK",
+            "positionType": "LONG",
+            "heldInAccount": "CASH",
+            "description": "JPM STOCK",
+            "symbol": "JPM",
+            "currentUnitPrice": 113.35,
+            "currentUnitPriceDate": "2019-07-09T12:00:00.000Z",
+            "units": 10,
+            "marketValue": 1133.5,
+            "faceValue": 1033.23,
+            "averageCost": true,
+            "cashAccount": false,
+            "rate": 1.6,
+            "assetClasses": [
+                {
+                    "assetClass": "Cash",
+                    "percent": 38.838623453393
+                }
+            ],
+            "debtSecurity": {
+                "parValue": 100,
+                "yieldToMaturity": 0
+            },
+            "expirationDate": "2019-07-09T12:000:00.000Z",
+            "sweepSecurity": {
+                "currentBalance": 1677,
+                "availableBalance": 1233,
+                "balanceAsOf": "2019-07-09T12:00:00.000Z"
+            },
+            "optionSecurity": {
+                "optionType": "call",
+                "strikePrice": 5,
+                "expireDate": "2019-07-09T12:00:00.000Z",
+                "sharesPerContract": 100
+            }
+        },
+        {
+            "securityId": "46625H100",
+            "securityIdType": "CUSIP",
+            "holdingName": "JPMorgan Chase & Co.",
+            "holdingType": "STOCK",
+            "positionType": "LONG",
+            "heldInAccount": "CASH",
+            "description": "JPM STOCK",
+            "symbol": "JPM",
+            "currentUnitPrice": 113.35,
+            "currentUnitPriceDate": "2019-07-09T12:00:00.000Z",
+            "units": 10,
+            "assetClasses": [
+                {
+                    "assetClass": "Cash",
+                    "percent": 38.838623453393
+                }
+            ],
+            "debtSecurity": {
+                "parValue": 100,
+                "yieldToMaturity": 0
+            },
+            "marketValue": 1133.5,
+            "faceValue": 1033.23,
+            "averageCost": true,
+            "cashAccount": false,
+            "rate": 1.6,
+            "expirationDate": "2019-07-09T12:00:00.000Z",
+            "optionSecurity": {
+                "optionType": "call",
+                "strikePrice": 5,
+                "expireDate": "2019-07-09T12:00:00.000Z",
+                "sharesPerContract": 100
+            }
+        }
+    ],
+    "parentinstitutionAccountId": null,
+    "lineOfBusiness": "Test LOB",
+    "routingTransitNumber": "12345",
+    "balanceType": "ASSET",
+    "interestRate": 8.0,
+    "interestRateType": "FIXED",
+    "interestRateAsOf": "2017-11-05T13:15:30.751Z",
+    "priorInterestRate": 4.0,
+    "transferIn": false,
+    "transferOut": true,
+    "micrNumber": "Test micr",
+    "lastActivityDate": "2020-05-15",
+    "transactionsIncluded": false,
+    "balanceAsOf": "2020-06-01",
+    "allowedCheckWriting": true,
+    "allowedOptionTrade": false,
+    "currentValue": 50,
+    "openOrders": [
+        {
+            "orderType": "BUY"
+        }
+    ],
+    "contribution": null,
+    "vesting": null,
+    "investmentLoans": null,
+    "availableCashBalance": 381.31,
+    "margin": null,
+    "marginBalance": 0,
+    "shortBalance": 0,
+    "rolloverAmount": null,
+    "employerName": null,
+    "brokerId": null,
+    "planId": null,
+    "calendarYearFor401k": null,
+    "dailyChange": null,
+    "percentageChange": null,
+    "transactions": null,
+    "pensionSource": null
+}

@@ -1,0 +1,708 @@
+{
+	"info": {
+		"_postman_id": "0e4e62b7-39b5-4151-b484-450c6912a5c3",
+		"name": "fdx6.0-mock-resource-server",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "fdxuser",
+			"item": [
+				{
+					"name": "Checking Accounts",
+					"item": [
+						{
+							"name": "Get Account Details",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authorize_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{host}}/fdx/v6/accounts/{{deposit_acc_1}}",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"fdx",
+										"v6",
+										"accounts",
+										"{{deposit_acc_1}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Transactions",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authorize_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{host}}/fdx/v6/accounts/{{deposit_acc_1}}/transactions",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"fdx",
+										"v6",
+										"accounts",
+										"{{deposit_acc_1}}",
+										"transactions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Contacts Details",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authorize_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{host}}/fdx/v6/accounts/{{deposit_acc_1}}/contact",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"fdx",
+										"v6",
+										"accounts",
+										"{{deposit_acc_1}}",
+										"contact"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Payment Networks Details",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authorize_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{host}}/fdx/v6/accounts/{{deposit_acc_1}}/payment-networks",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"fdx",
+										"v6",
+										"accounts",
+										"{{deposit_acc_1}}",
+										"payment-networks"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Loan Accounts",
+					"item": [
+						{
+							"name": "Get Account Details",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authorize_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{host}}/fdx/v6/accounts/{{loan_acc_1}}",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"fdx",
+										"v6",
+										"accounts",
+										"{{loan_acc_1}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Transactions",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authorize_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{host}}/fdx/v6/accounts/{{loan_acc_1}}/transactions",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"fdx",
+										"v6",
+										"accounts",
+										"{{loan_acc_1}}",
+										"transactions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Contact Details",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authorize_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{host}}/fdx/v6/accounts/{{loan_acc_1}}/contact",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"fdx",
+										"v6",
+										"accounts",
+										"{{loan_acc_1}}",
+										"contact"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Payment Networks Details",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authorize_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{host}}/fdx/v6/accounts/{{loan_acc_1}}/payment-networks",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"fdx",
+										"v6",
+										"accounts",
+										"{{loan_acc_1}}",
+										"payment-networks"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Investment Accounts",
+					"item": [
+						{
+							"name": "Get Account Details",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authorize_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{host}}/fdx/v6/accounts/{{investment_acc_1}}",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"fdx",
+										"v6",
+										"accounts",
+										"{{investment_acc_1}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Transactions",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authorize_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{host}}/fdx/v6/accounts/{{investment_acc_1}}/transactions",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"fdx",
+										"v6",
+										"accounts",
+										"{{investment_acc_1}}",
+										"transactions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Contact Details",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authorize_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{host}}/fdx/v6/accounts/{{investment_acc_1}}/contact",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"fdx",
+										"v6",
+										"accounts",
+										"{{investment_acc_1}}",
+										"contact"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "LineOfCreditAccounts",
+					"item": [
+						{
+							"name": "Get Account Details",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authorize_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{host}}/fdx/v6/accounts/{{loc_acc_1}}",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"fdx",
+										"v6",
+										"accounts",
+										"{{loc_acc_1}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Transactions",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authorize_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{host}}/fdx/v6/accounts/{{loc_acc_1}}/transactions",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"fdx",
+										"v6",
+										"accounts",
+										"{{loc_acc_1}}",
+										"transactions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Contact Details",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authorize_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{host}}/fdx/v6/accounts/{{loc_acc_1}}/contact",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"fdx",
+										"v6",
+										"accounts",
+										"{{loc_acc_1}}",
+										"contact"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Payment Networks Details",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authorize_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{host}}/fdx/v6/accounts/{{loc_acc_1}}/payment-networks",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"fdx",
+										"v6",
+										"accounts",
+										"{{loc_acc_1}}",
+										"payment-networks"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "All Accounts List",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authorize_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{host}}/fdx/v6/accounts",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"fdx",
+								"v6",
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Accounts List By UserId",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{consent_auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{host}}/consent/accounts?userId={{user_1}}",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"consent",
+								"accounts"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "{{user_1}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Consent",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{consent_auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accountIds\" : [10001],\r\n    \"userId\": \"fdxuser\",\r\n    \"consentShareDurationSeconds\": 600\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{host}}/consent?",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"consent"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Consent",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{consent_auth_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accountIds\" : [20001],\r\n    \"userId\": \"fdxuser\",\r\n    \"consentShareDurationSeconds\": 600\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{host}}/consent/c342efa2-ada6-4b98-b73b-57f708d7a63f",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"consent",
+								"c342efa2-ada6-4b98-b73b-57f708d7a63f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Consent",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{consent_auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{host}}/consent/c342efa2-ada6-4b98-b73b-57f708d7a63f",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"consent",
+								"c342efa2-ada6-4b98-b73b-57f708d7a63f"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "UserCollection",
+			"item": [
+				{
+					"name": "SaveUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\":\"fdxuser\",\r\n    \"password\":\"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{host}}/user",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{host}}/user/getUser/fdxuser",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user",
+								"getUser",
+								"fdxuser"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": " {{authorize_token}}",
+			"value": "XYZ",
+			"disabled": true
+		}
+	]
+}

@@ -1,0 +1,54 @@
+{
+    "page": {
+        "total": 4
+    },
+    "transactions": [
+        {
+            "accountId": "10001",
+            "accountCategory": "DEPOSIT_ACCOUNT",
+            "transactionId": "12455",
+            "postedTimestamp": "2019-07-31T12:00:00.000Z",
+            "transactionTimestamp": "2019-07-31T12:00:00.000Z",
+            "description": "INTEREST PAYMENT",
+            "status": "POSTED",
+            "amount": 0.01,
+            "transactionType": "POSCREDIT"
+        },
+        {
+            "accountId": "10001",
+            "accountCategory": "DEPOSIT_ACCOUNT",
+            "transactionId": "45322",
+            "postedTimestamp": "2019-02-28T12:00:00.000Z",
+            "transactionTimestamp": "2019-02-28T12:00:00.000Z",
+            "description": "INTEREST PAYMENT",
+            "status": "POSTED",
+            "amount": 0.03,
+            "transactionType": "POSCREDIT"
+        },
+        {
+            "accountId": "10001",
+            "accountCategory": "DEPOSIT_ACCOUNT",
+            "transactionId": "4322777",
+            "postedTimestamp": "2019-02-26T12:00:00.000Z",
+            "transactionTimestamp": "2019-02-26T12:00:00.000Z",
+            "description": "ALLY BANK TRANSFER WEB ID: 3770527921",
+            "status": "POSTED",
+            "amount": -300,
+            "transactionType": "POSDEBIT"
+        },
+        {
+            "accountId": "10001",
+            "accountCategory": "DEPOSIT_ACCOUNT",
+            "transactionId": "5705141948",
+            "postedTimestamp": "2019-02-26T12:00:00.000Z",
+            "transactionTimestamp": "2019-02-26T12:00:00.000Z",
+            "description": "VENMO CASHOUT",
+            "debitCreditMemo": "CREDIT",
+            "status": "POSTED",
+            "amount": 101.72,
+            "transactionType": "POSCREDIT",
+            "checkNumber":45400222,
+            "payee": "Test User"
+        }
+    ]
+}

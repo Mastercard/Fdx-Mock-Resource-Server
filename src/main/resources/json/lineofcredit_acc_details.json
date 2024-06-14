@@ -1,0 +1,45 @@
+{
+		"accountId": "5326884",
+		 "accountCategory": "LOC_ACCOUNT",
+        "accountType": "HOMELINEOFCREDIT",
+        "displayName": "My Business Credit Card Acc XXXX6884",
+        "accountNumberDisplay": "...6884",
+        "status": "OPEN",
+        "productName": "Credit Card",
+        "description": "My Business Credit Card Acc XXXX68844",
+         "routingTransitNumber": "12345",
+        "links": [
+            {
+                "rel": "self",
+                "href": "/v1/financial-aggregation-dda1-ext-bank/account"
+            },
+            {
+                "rel": "transactions",
+                "href": "/v1/financial-aggregation-dda1-ext-bank/account/transactions"
+            }
+        ],
+        "nickname": "My Business Credit Card Acc XXXX6884",
+        "currency": {
+            "currencyRate": 1,
+            "currencyCode": "USD",
+            "originalCurrencyCode": "USD"
+        },
+        "accountNumber": "00008000461791",
+        "balanceAsOf": "2019-06-06T13:55:11.754Z",
+        "creditLine": 200000,
+        "availableCredit": 0,
+        "nextPaymentAmount": "0.0",
+        "nextPaymentDate": "2018-08-01T00:00:00.000Z",
+        "currentBalance": 102911.98,
+        "minimumPaymentAmount": 0,
+        "lastPaymentAmount": 0,
+        "availableCash": "0.0",
+        "bills": [
+            {
+                "minimumPaymentDue": "0.0",
+                "autoPayEnabled": "true",
+                "pastDueAmount": "9000.0",
+                "statementBalance": "0.0"
+            }
+        ]
+}

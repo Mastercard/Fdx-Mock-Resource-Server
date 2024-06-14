@@ -1,0 +1,91 @@
+{
+    "page": {
+        "total": 6
+    },
+    "transactions": [
+        {
+            "accountId": "600011",
+            "transactionId": "6799",
+            "accountCategory": "LOAN_ACCOUNT",
+            "postedTimestamp": "2020-01-15",
+            "description": "PRINCIPAL PAYMENT",
+            "amount": 500,
+            "paymentDetails": {
+                "principalAmount": 456,
+                "interestAmount": 0,
+                "escrowAmount": 0,
+                "feesAmount": 0
+            }
+        },
+        {
+            "accountId": "600011",
+            "transactionId": "78988",
+            "accountCategory": "LOAN_ACCOUNT",
+            "postedTimestamp": "2020-01-15",
+            "description": "PAYMENT",
+            "amount": 2335.05,
+            "paymentDetails": {
+                "principalAmount": 3556,
+                "interestAmount": 234.12,
+                "escrowAmount": 567.09,
+                "feesAmount": 0
+            }
+        },
+        {
+            "accountId": "600011",
+             "transactionId": "67899",
+            "accountCategory": "LOAN_ACCOUNT",
+            "postedTimestamp": "2020-01-10",
+            "description": "CITY TAX",
+            "amount": -1768.24,
+            "paymentDetails": {
+                "principalAmount": 0,
+                "interestAmount": 0,
+                "escrowAmount": -1790.24,
+                "feesAmount": 0
+            }
+        },
+        {
+            "accountId": "600011",
+            "transactionId": "67899",
+            "accountCategory": "LOAN_ACCOUNT",
+            "postedTimestamp": "2023-12-31",
+            "description": "INTEREST ON ESCROW DEPOSIT",
+            "amount": 101.72,
+            "paymentDetails": {
+                "principalAmount": 0,
+                "interestAmount": 0,
+                "escrowAmount": 0.04,
+                "feesAmount": 0
+            }
+        },
+        {
+            "accountId": "600011",
+            "transactionId": "90088",
+            "accountCategory": "LOAN_ACCOUNT",
+            "postedTimestamp": "2023-12-15",
+            "description": "PAYMENT",
+            "amount": 2335.05,
+            "paymentDetails": {
+                "principalAmount": 793.65,
+                "interestAmount": 872.31,
+                "escrowAmount": 669.09,
+                "feesAmount": 0
+            }
+        },
+        {
+            "accountId": "600011",
+            "transactionId": "678900",
+            "accountCategory": "LOAN_ACCOUNT",
+            "postedTimestamp": "2023-12-13",
+            "description": "RETURNED ITEM",
+            "amount": 0,
+            "paymentDetails": {
+                "principalAmount": 0,
+                "interestAmount": 0,
+                "escrowAmount": 0,
+                "feesAmount": 0
+            }
+        }
+    ]
+}

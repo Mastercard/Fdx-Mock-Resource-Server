@@ -1,0 +1,64 @@
+{
+    "accountId": "6468990",
+    "holders": [
+        {
+            "customerId": "customer0000005",
+            "relationship": "SECONDARY",
+            "name": {
+                "first": "Jackes",
+                "middle": "Miller",
+                "last": "Dane",
+                "suffix": "IV"
+            }
+        },
+        {
+            "customerId": "customer0000006",
+            "relationship": "PRIMARY_JOINT",
+            "name": {
+                "first": "Maya",
+                "last": "Angelou",
+                "middle": "Annie"
+            }
+        }
+    ],
+    "emails": [
+        "Jackes.m.Dane@domain.tld",
+        "m.angelou@domain.tld"
+    ],
+    "addresses": [
+        {
+            "type": "HOME",
+            "line1": "1005 Brinley Ln Kaysville",
+            "line2": "no. 103",
+            "city": "UTAH",
+            "region": "UT",
+            "postalCode": "84037",
+            "country": "US"
+        },
+        {
+            "type": "HOME",
+            "line1": "10053 N 6580th W American Fork",
+            "city": "UTAH",
+            "region": "UT",
+            "postalCode": "84003",
+            "country": "US"
+        }
+    ],
+    "telephones": [
+        {
+            "type": "HOME",
+            "country": "1",
+            "number": "3127771926"
+        },
+        {
+            "type": "CELL",
+            "country": "53",
+            "number": "45915607"
+        },
+        {
+            "type": "HOME",
+            "country": "1",
+            "number": "4157771926"
+        }
+    ]
+}

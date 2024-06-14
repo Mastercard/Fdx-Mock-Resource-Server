@@ -1,0 +1,118 @@
+[
+    {
+      "bankId": "121000358",
+      "identifier": "7000003223",
+      "accountId":"10001",
+      "identifierType": "ACCOUNT_NUMBER",
+      "type": "US_ACH",
+      "transferIn": true,
+      "transferOut": true,
+      "transferLimits": {
+        "out": {
+          "day": {
+            "resetsOn": "2023-08-09T00:00:00.000Z",
+            "transferMaxAmount": 10000,
+            "transferRemainingAmount": 8356,
+            "maxOccurrence": 6,
+            "remainingOccurrence": 5
+          },
+          "month": {
+            "resetsOn": "2023-09-01T00:00:00.000Z",
+            "transferMaxAmount": 50000,
+            "transferRemainingAmount": 35200
+          },
+          "transaction": {
+            "transferMaxAmount": 5000,
+            "transferRemainingAmount": 4990
+          }
+        }
+      }
+    },
+      {
+      "bankId": "121000359",
+      "identifier": "34259979",
+      "accountId":"20001",
+      "identifierType": "ACCOUNT_NUMBER",
+      "type": "US_ACH",
+      "transferIn": true,
+      "transferOut": true,
+      "transferLimits": {
+        "out": {
+          "day": {
+            "resetsOn": "2024-08-09T00:00:00.000Z",
+            "transferMaxAmount": 20000,
+            "transferRemainingAmount": 5467,
+            "maxOccurrence": 6,
+            "remainingOccurrence": 5
+          },
+          "month": {
+            "resetsOn": "2024-09-01T00:00:00.000Z",
+            "transferMaxAmount": 60000,
+            "transferRemainingAmount": 34500
+          },
+          "transaction": {
+            "transferMaxAmount": 6000,
+            "transferRemainingAmount": 3456
+          }
+        }
+      }
+    },
+    {
+      "bankId": "121000359",
+      "identifier": "4623054403",
+      "accountId":"3746272",
+      "identifierType": "ACCOUNT_NUMBER",
+      "type": "US_ACH",
+      "transferIn": true,
+      "transferOut": true,
+      "transferLimits": {
+        "out": {
+          "day": {
+            "resetsOn": "2024-06-12T00:00:00.000Z",
+            "transferMaxAmount": 20000,
+            "transferRemainingAmount": 5467,
+            "maxOccurrence": 6,
+            "remainingOccurrence": 5
+          },
+          "month": {
+            "resetsOn": "2024-11-01T00:00:00.000Z",
+            "transferMaxAmount": 45000,
+            "transferRemainingAmount": 34560
+          },
+          "transaction": {
+            "transferMaxAmount": 7000,
+            "transferRemainingAmount": 2457
+          }
+        }
+      }
+    },
+    {
+      "bankId": "121000359",
+      "identifier": "00008000461791",
+      "accountId":"5326884",
+      "identifierType": "ACCOUNT_NUMBER",
+      "type": "US_ACH",
+      "transferIn": true,
+      "transferOut": true,
+      "transferLimits": {
+        "out": {
+          "day": {
+            "resetsOn": "2024-10-15T00:00:00.000Z",
+            "transferMaxAmount": 50000,
+            "transferRemainingAmount": 4577,
+            "maxOccurrence": 6,
+            "remainingOccurrence": 5
+          },
+          "month": {
+            "resetsOn": "2024-09-01T00:00:00.000Z",
+            "transferMaxAmount": 40000,
+            "transferRemainingAmount": 22234
+          },
+          "transaction": {
+            "transferMaxAmount": 8000,
+            "transferRemainingAmount": 3457
+          }
+        }
+      }
+    }
+  ]

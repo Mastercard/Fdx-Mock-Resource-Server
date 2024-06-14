@@ -1,0 +1,24 @@
+{
+  "accountCategory": "LOAN_ACCOUNT",
+  "accountId": "20001",
+   "balanceAsOf": "2017-11-05T13:15:30.751Z",
+   "institutionAccountId": "20001",
+  "accountType": "LOAN",
+  "accountNumberDisplay": "XXXX9979",
+  "accountNumber": "34259979",
+  "productName":"HOME LOAN",
+  "status": "OPEN",
+  "description": "My Mortgage Acc XXXX9979",
+  "nickname": "My Mortgage Acc XXXX9979",
+  "routingTransitNumber": "67890",
+  "currency": {
+    "currencyCode": "USD"
+  },
+  "interestRate": 4,
+  "loanTerm": 0,
+  "totalNumberOfPayments": 0,
+  "principalBalance": 133000.35,
+   "loanTerm": 30,
+  "nextPaymentDate": "2017-12-01",
+   "nextPaymentAmount": 2333.32
+}

@@ -1,0 +1,41 @@
+{
+ 	"accountId": "4568922",
+    "holders": [
+        {
+            "customerId": "customer0000007",
+            "relationship": "SOLE_OWNER",
+            "name": {
+                "first": "Jackes",
+                "middle": "Miller",
+                "last": "Dane",
+                "suffix": "IV"
+            }
+        }
+    ],
+    "emails": [
+        "Jackes.m.Dane@domain.tld"
+    ],
+    "addresses": [
+        {
+            "type": "HOME",
+            "line1": "1850 N Clark St",
+            "line2": "no. 103",
+            "city": "Chicago",
+            "region": "IL",
+            "postalCode": "60614",
+            "country": "US"
+        }
+    ],
+    "telephones": [
+        {
+            "type": "HOME",
+            "country": "1",
+            "number": "3127771926"
+        },
+        {
+            "type": "CELL",
+            "country": "53",
+            "number": "45915607"
+        }
+    ]
+}

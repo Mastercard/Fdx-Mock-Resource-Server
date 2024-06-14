@@ -1,0 +1,64 @@
+{
+    "accountId": "789055",
+    "holders": [
+        {
+            "customerId": "customer0000008",
+            "relationship": "SECONDARY",
+            "name": {
+                "first": "Chirs",
+                "middle": "Miller",
+                "last": "Wade",
+                "suffix": "IV"
+            }
+        },
+        {
+            "customerId": "customer0000009",
+            "relationship": "PRIMARY_JOINT",
+            "name": {
+                "first": "Maya",
+                "last": "Angelou",
+                "middle": "Annie"
+            }
+        }
+    ],
+    "emails": [
+        "Chirs.m.Wade@domain.tld",
+        "m.angelou@domain.tld"
+    ],
+    "addresses": [
+        {
+            "type": "HOME",
+            "line1": "1850 N Clark St",
+            "line2": "no. 103",
+            "city": "Chicago",
+            "region": "IL",
+            "postalCode": "60614",
+            "country": "US"
+        },
+        {
+            "type": "HOME",
+            "line1": "2014 N Main St",
+            "city": "San Francisco",
+            "region": "CA",
+            "postalCode": "94105",
+            "country": "US"
+        }
+    ],
+    "telephones": [
+        {
+            "type": "HOME",
+            "country": "1",
+            "number": "3127771926"
+        },
+        {
+            "type": "CELL",
+            "country": "53",
+            "number": "45915607"
+        },
+        {
+            "type": "HOME",
+            "country": "1",
+            "number": "4157771926"
+        }
+    ]
+}

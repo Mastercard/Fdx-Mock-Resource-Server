@@ -1,0 +1,40 @@
+ {
+		"accountId": "10001",
+		"accountCategory": "DEPOSIT_ACCOUNT",
+		"accountType": "CHECKING",
+		"displayName": "******3223",
+		"status": "OPEN",
+		"productName":"Cash Management",
+		"currency": {
+			"currencyRate": null,
+			"currencyCode": "USD",
+			"originalCurrencyCode": "USD"
+		},
+		"interestYtd": 14.15,
+		"maturityDate": "2020-11-09T00:00:00.000-0500",
+		"annualPercentageYield": 0.45,
+		"description": "My Checking Acc XXXX3223",
+		"nickname": "My Checking Acc XXXX3223",
+		"lineOfBusiness": "RETAIL",
+		"accountNumber": "7000003223",
+		"accountNumberDisplay": "3223",
+		"routingTransitNumber": "256074974",
+		"balanceType": "ASSET",
+		"lastActivityDate": "2020-11-09T00:00:00.000-0500",
+		"transactionsIncluded": false,
+		"balanceAsOf": "2020-12-07T01:06:15.649-0500",
+		"currentBalance": 4984.46,
+		"availableBalance": 4984.46,
+		"openingDayBalance": 500,
+		"fiAttributes": [
+			{
+				"name": "interestPaidLastYear",
+				"value": "14.08"
+			},
+			{
+				"name": "interestPayoutFrequency",
+				"value": "Annually (And At Maturity)"
+			}
+		]
+
+}

@@ -5,6 +5,7 @@ import com.mastercard.fdx.mock.entity.AccountContact;
 import com.mastercard.fdx.mock.entity.AccountDescriptor;
 import com.mastercard.fdx.mock.dto.AccountPaymentNetworkList;
 import com.mastercard.fdx.mock.dto.Accounts;
+import com.mastercard.fdx.mock.dto.StatementsResponse;
 import com.mastercard.fdx.mock.service.FdxResourceService;
 import com.mastercard.fdx.mock.transaction.dto.Transactions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +34,7 @@ public class FdxResourceServerController {
 		} catch (ApiException e) {
 			return new ResponseEntity<>(new AccountDescriptor(e.getErrorPojo().getErrorCode(),e.getErrorPojo().getErrorMessage()), HttpStatus.BAD_REQUEST);
 		}
-		AccountDescriptor response = fdxResourceService.getAccountsDetails(accountId);
-		return new ResponseEntity<>(response, HttpStatus.OK);
+		return fdxResourceService.getAccountsDetails(accountId);
 	}
 	
 	
@@ -78,6 +78,34 @@ public class FdxResourceServerController {
 		
 		return new ResponseEntity<>(fdxResourceService.getPaymentNetworksDetails(accountId),HttpStatus.OK);
 		
+	}
+	
+	@GetMapping("/accounts/{accountId}/statements")
+	public ResponseEntity<StatementsResponse> getStatements(@RequestHeader(value = "Authorization") String authorization,
+														@PathVariable("accountId") String accountId){
+		
+		try {
+			fdxResourceService.validateTokenWithRequestAccountId(authorization,accountId);
+		} catch (ApiException e) {
+			return new ResponseEntity<>(new StatementsResponse(e.getErrorPojo().getErrorCode(),e.getErrorPojo().getErrorMessage()), HttpStatus.BAD_REQUEST);
+		}
+		
+		return fdxResourceService.getStatements(accountId);
+	
+	}
+	
+	@GetMapping("/accounts/{accountId}/statements/{statementId}")
+	public ResponseEntity<?> getStatementsByStatementId(@RequestHeader(value = "Authorization") String authorization,
+														@PathVariable("accountId") String accountId,@PathVariable("statementId") String statementId){
+		
+		try {
+			fdxResourceService.validateTokenWithRequestAccountId(authorization,accountId);
+		} catch (ApiException e) {
+			return new ResponseEntity<>(new StatementsResponse(e.getErrorPojo().getErrorCode(),e.getErrorPojo().getErrorMessage()), HttpStatus.BAD_REQUEST);
+		}
+		
+		return fdxResourceService.getStatementsByStatementId(accountId,statementId);
+	
 	}
 
 }

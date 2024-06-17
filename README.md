@@ -18,6 +18,8 @@ This server acts as a central hub for accessing account information, transaction
 3. **Transaction Details**: `/account/{account_id}/transactions` - Returns transaction details for a specific account ID.
 4. **Payment Network Details**: `/account/{account_id}/payment-networks` - Returns payment network information for a specific account ID.
 5. **Contact Details**: `/account/{account_id}/contact` - Returns account holder information for a specific account ID.
+6. **Get All Statements**: `/account/{account_id}/statements` - Returns account statements information for a specific account ID.
+7. **Statements Details**: `/account/{account_id}/statements/{statement_id}` - Returns account statements information for a specific statement ID.
 
 ## Prerequisites
 1. An IDE that supports Java 17 or above (e.g., Eclipse, IntelliJ, STS).

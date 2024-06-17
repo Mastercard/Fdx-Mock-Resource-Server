@@ -1,24 +1,37 @@
 package com.mastercard.fdx.mock.service;
 
-import com.mastercard.fdx.mock.dto.*;
-import com.mastercard.fdx.mock.entity.*;
-import com.mastercard.fdx.mock.exception.ApiException;
-import com.mastercard.fdx.mock.repository.AccountsRepository;
-import com.mastercard.fdx.mock.repository.ContactRepository;
-import com.mastercard.fdx.mock.repository.PaymentNetworksRepository;
-import com.mastercard.fdx.mock.repository.TransactionsRepository;
-import com.mastercard.fdx.mock.transaction.dto.Transactions;
-import com.mastercard.fdx.mock.transaction.dto.TransactionsDetails;
-import com.mastercard.fdx.mock.utilities.JwtDecoderUtils;
-import org.json.JSONArray;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+
+import org.json.JSONArray;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
+
+import com.mastercard.fdx.mock.config.ErrorConfig;
+import com.mastercard.fdx.mock.dto.AccountListResponsePojo;
+import com.mastercard.fdx.mock.dto.AccountPaymentNetworkList;
+import com.mastercard.fdx.mock.dto.Accounts;
+import com.mastercard.fdx.mock.dto.ErrorPojo;
+import com.mastercard.fdx.mock.dto.Page;
+import com.mastercard.fdx.mock.dto.StatementsResponse;
+import com.mastercard.fdx.mock.entity.AccountContact;
+import com.mastercard.fdx.mock.entity.AccountDescriptor;
+import com.mastercard.fdx.mock.entity.AccountPaymentNetwork;
+import com.mastercard.fdx.mock.entity.Statement;
+import com.mastercard.fdx.mock.exception.ApiException;
+import com.mastercard.fdx.mock.repository.AccountsRepository;
+import com.mastercard.fdx.mock.repository.ContactRepository;
+import com.mastercard.fdx.mock.repository.PaymentNetworksRepository;
+import com.mastercard.fdx.mock.repository.StatementRepository;
+import com.mastercard.fdx.mock.repository.TransactionsRepository;
+import com.mastercard.fdx.mock.transaction.dto.Transactions;
+import com.mastercard.fdx.mock.transaction.dto.TransactionsDetails;
+import com.mastercard.fdx.mock.utilities.JwtDecoderUtils;
 
 @Service
 public class FdxResourceService {
@@ -35,6 +48,10 @@ public class FdxResourceService {
 	 
 	 @Autowired
 	 PaymentNetworksRepository paymentNetworksRepository;
+	 
+	 @Autowired ErrorConfig errorConfig;
+	 
+	 @Autowired StatementRepository statementRepository;
 	 
 	public Accounts getAccountsList(String authorization) {
 		List<? extends AccountDescriptor> accountList = null;
@@ -54,8 +71,12 @@ public class FdxResourceService {
 		 return accounts;
 	}
 	
-	public AccountDescriptor getAccountsDetails(String accountId) {
-		return accountsRepository.findByAccountId(accountId);
+	public ResponseEntity<AccountDescriptor> getAccountsDetails(String accountId) {
+		 AccountDescriptor accountDescriptor = accountsRepository.findByAccountId(accountId);
+		if(Objects.isNull(accountDescriptor))
+			return new ResponseEntity<>(new AccountDescriptor(errorConfig.getAccountNotFoundErrorCode(), errorConfig.getAccountNotFoundErrorMsg()),HttpStatus.BAD_REQUEST);
+		
+		return new ResponseEntity<>(accountDescriptor, HttpStatus.OK);
 	}
 	
 	public AccountContact getContactsDetails(String accountId) {
@@ -102,5 +123,33 @@ public class FdxResourceService {
 		
 		return list;
 	}
+
+	public ResponseEntity<StatementsResponse> getStatements(String accountId) {
+		StatementsResponse statementsResponse = new StatementsResponse();
+		if(Objects.isNull(accountsRepository.findByAccountId(accountId)))
+			return new ResponseEntity<>(new StatementsResponse(errorConfig.getAccountNotFoundErrorCode(), errorConfig.getAccountNotFoundErrorMsg()),HttpStatus.BAD_REQUEST);
+		
+		List<Statement> statement =  statementRepository.findStatementByAccountId(accountId);
+		if(Objects.isNull(statement) || CollectionUtils.isEmpty(statement))
+			return new ResponseEntity<>(new StatementsResponse(errorConfig.getStatementNotFoundErrorCode(), errorConfig.getStatementNotFoundErrorMsg()),HttpStatus.BAD_REQUEST);
+		
+		statementsResponse.setStatements(statement);
+		Page page = new Page();
+		page.setTotal(statement.size());
+		statementsResponse.setPage(page);
+		return new ResponseEntity<>(statementsResponse,HttpStatus.OK);
+	}
 	
+	public ResponseEntity<?> getStatementsByStatementId(String accountId,String statementId) {
+		if(Objects.isNull(accountsRepository.findByAccountId(accountId)))
+			return new ResponseEntity<>(new StatementsResponse(errorConfig.getAccountNotFoundErrorCode(), errorConfig.getAccountNotFoundErrorMsg()),HttpStatus.BAD_REQUEST);
+		
+		Statement statement =  statementRepository.findStatementByStatementId(statementId);
+		if(Objects.isNull(statement))
+			return new ResponseEntity<>(new StatementsResponse(errorConfig.getStatementNotFoundErrorCode(), errorConfig.getStatementNotFoundErrorMsg()),HttpStatus.BAD_REQUEST);
+		
+		
+		return new ResponseEntity<>(statement.getFile(),HttpStatus.OK);
+	}
+
 }

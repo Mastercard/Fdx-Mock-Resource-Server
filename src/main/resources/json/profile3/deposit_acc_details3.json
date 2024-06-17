@@ -1,0 +1,40 @@
+ {
+		"accountId": "450022",
+		"accountCategory": "DEPOSIT_ACCOUNT",
+		"accountType": "SAVING",
+		"displayName": "******0022",
+		"status": "CLOSED",
+		"productName":"Cash Management",
+		"currency": {
+			"currencyRate": null,
+			"currencyCode": "USD",
+			"originalCurrencyCode": "USD"
+		},
+		"interestYtd": 14.15,
+		"maturityDate": "2020-11-09T00:00:00.000-0500",
+		"annualPercentageYield": 0.45,
+		"description": "My Saving Acc XXXX0022",
+		"nickname": "My Saving Acc XXXX0022",
+		"lineOfBusiness": "RETAIL",
+		"accountNumber": "322434555",
+		"accountNumberDisplay": "0022",
+		"routingTransitNumber": "557904323",
+		"balanceType": "ASSET",
+		"lastActivityDate": "2020-11-09T00:00:00.000-0500",
+		"transactionsIncluded": false,
+		"balanceAsOf": "2020-12-07T01:06:15.649-0500",
+		"currentBalance": 9022,
+		"availableBalance": 2444,
+		"openingDayBalance": 500,
+		"fiAttributes": [
+			{
+				"name": "interestPaidLastYear",
+				"value": "14.08"
+			},
+			{
+				"name": "interestPayoutFrequency",
+				"value": "Annually (And At Maturity)"
+			}
+		]
+
+}

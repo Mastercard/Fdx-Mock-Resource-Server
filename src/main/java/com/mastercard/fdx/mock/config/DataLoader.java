@@ -1,21 +1,45 @@
 package com.mastercard.fdx.mock.config;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.List;
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mastercard.fdx.mock.entity.*;
-import com.mastercard.fdx.mock.repository.*;
+import com.mastercard.fdx.mock.entity.AccountConsent;
+import com.mastercard.fdx.mock.entity.AccountContact;
+import com.mastercard.fdx.mock.entity.AccountPaymentNetwork;
+import com.mastercard.fdx.mock.entity.DepositAccount;
+import com.mastercard.fdx.mock.entity.FdxUser;
+import com.mastercard.fdx.mock.entity.InvestmentAccount;
+import com.mastercard.fdx.mock.entity.LineOfCreditAccount;
+import com.mastercard.fdx.mock.entity.LoanAccount;
+import com.mastercard.fdx.mock.entity.Statement;
+import com.mastercard.fdx.mock.repository.AccountConsentRepository;
+import com.mastercard.fdx.mock.repository.AccountsRepository;
+import com.mastercard.fdx.mock.repository.ContactRepository;
+import com.mastercard.fdx.mock.repository.DepositAccountsRepository;
+import com.mastercard.fdx.mock.repository.FdxUserRepository;
+import com.mastercard.fdx.mock.repository.InvestmentAccountsRepository;
+import com.mastercard.fdx.mock.repository.LineOfCreditAccountsRepository;
+import com.mastercard.fdx.mock.repository.LoanAccountsRepository;
+import com.mastercard.fdx.mock.repository.PaymentNetworksRepository;
+import com.mastercard.fdx.mock.repository.StatementRepository;
+import com.mastercard.fdx.mock.repository.TransactionsRepository;
 import com.mastercard.fdx.mock.transaction.dto.InvestmentTransaction;
 import com.mastercard.fdx.mock.transaction.dto.Transactions;
 import com.mastercard.fdx.mock.utilities.CommonUtilities;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
-import java.util.Arrays;
-import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Configuration
@@ -28,14 +52,14 @@ public class DataLoader {
                              LoanAccountsRepository loanAccountsRepository, InvestmentAccountsRepository investmentAccountsRepository,
                              LineOfCreditAccountsRepository lineOfCreditAccountsRepository,
                              TransactionsRepository transactionsRepository, ContactRepository contactRepository,
-                             PaymentNetworksRepository paymentNetworksRepository, AccountConsentRepository consentRepository, FdxUserRepository fdxUserRepository) {
+                             PaymentNetworksRepository paymentNetworksRepository, AccountConsentRepository consentRepository, FdxUserRepository fdxUserRepository,StatementRepository statementRepository) {
         return args -> {
             // read json and write to db
             ObjectMapper mapper = new ObjectMapper();
             try {
                 profileCreated(depositAccountsRepository, loanAccountsRepository, investmentAccountsRepository,
                         lineOfCreditAccountsRepository, transactionsRepository, contactRepository,
-                        paymentNetworksRepository, consentRepository, fdxUserRepository, mapper);
+                        paymentNetworksRepository, consentRepository, fdxUserRepository, mapper,statementRepository);
 
                 profile1Created(depositAccountsRepository, loanAccountsRepository, investmentAccountsRepository,
                         transactionsRepository, contactRepository,
@@ -44,6 +68,9 @@ public class DataLoader {
                 profile2Created(depositAccountsRepository, loanAccountsRepository,
                         transactionsRepository, contactRepository,
                         paymentNetworksRepository, consentRepository, fdxUserRepository, mapper);
+                
+                profile3Created(depositAccountsRepository, loanAccountsRepository,
+                		 consentRepository, fdxUserRepository, mapper);
 
 
                 log.info("All Profile and accout save successfully");
@@ -53,13 +80,15 @@ public class DataLoader {
         };
     }
 
-    private void profileCreated(DepositAccountsRepository depositAccountsRepository,
+   
+
+	private void profileCreated(DepositAccountsRepository depositAccountsRepository,
                                 LoanAccountsRepository loanAccountsRepository, InvestmentAccountsRepository investmentAccountsRepository,
                                 LineOfCreditAccountsRepository lineOfCreditAccountsRepository,
                                 TransactionsRepository transactionsRepository, ContactRepository contactRepository,
                                 PaymentNetworksRepository paymentNetworksRepository, AccountConsentRepository consentRepository,
-                                FdxUserRepository fdxUserRepository, ObjectMapper mapper)
-            throws JsonProcessingException, JsonMappingException {
+                                FdxUserRepository fdxUserRepository, ObjectMapper mapper,StatementRepository statementRepository)
+            throws IOException {
         // 1. Create user
         FdxUser fdxUser = new FdxUser(1, "fdxuser", CommonUtilities.encrypthash("password"),null);
         fdxUserRepository.save(fdxUser);
@@ -108,6 +137,23 @@ public class DataLoader {
 
         List<AccountPaymentNetwork> accountPaymentNetworkList =   mapper.readValue(CommonUtilities.getFileContent("payment_network_list.json"), new TypeReference<List<AccountPaymentNetwork>>() {});
         paymentNetworksRepository.saveAll(accountPaymentNetworkList);
+        
+        ClassPathResource resource = new ClassPathResource("sample-statements/Bank Account Sample Statement.pdf");
+        InputStream inputStream = resource.getInputStream();
+        
+        ClassPathResource resource1 = new ClassPathResource("sample-statements/statement_sample.pdf");
+        InputStream inputStream1 = resource1.getInputStream();
+        
+        
+        Statement statement = new Statement();
+        statement.setAccountId("10001");statement.setDescription("FFOS Monthly/Quarterly Statement");statement.setStatementDate(Calendar.getInstance());
+        statement.setStatementId("40004");statement.setStatus("AVAILABLE");statement.setFile(inputStream.readAllBytes());
+        
+        Statement statement1 = new Statement();
+        statement1.setAccountId("20001");statement1.setDescription("FFOS Year End Investment Report");statement1.setStatementDate(Calendar.getInstance());
+        statement1.setStatementId("50005");statement1.setStatus("AVAILABLE");statement1.setFile(inputStream1.readAllBytes());
+        
+        statementRepository.save(statement);statementRepository.save(statement1);
 
         log.info("Profile save successfully");
     }
@@ -196,4 +242,25 @@ public class DataLoader {
 
         log.info("Profile2 save successfully");
     }
+    
+    private void profile3Created(DepositAccountsRepository depositAccountsRepository,
+			LoanAccountsRepository loanAccountsRepository, AccountConsentRepository consentRepository,
+			FdxUserRepository fdxUserRepository, ObjectMapper mapper) throws JsonMappingException, JsonProcessingException {
+    	
+    	 // 1. Create user
+        FdxUser fdxUser = new FdxUser(4, "fdxuser3", CommonUtilities.encrypthash("password"),null);
+        fdxUserRepository.save(fdxUser);
+
+        //2. saving account for profile of fdxuser3 with all closed accounts...
+        AccountConsent accountConsent = new AccountConsent(4,"fdxuser3", Arrays.asList("450022","4023555"),null,0,"");
+        consentRepository.save(accountConsent);
+
+        LoanAccount loanAccounts = mapper.readValue(CommonUtilities.getFileContent("profile3/loan_acc_details3.json"), LoanAccount.class);
+        loanAccountsRepository.save(loanAccounts);
+
+        DepositAccount depositAccount = mapper.readValue(CommonUtilities.getFileContent("profile3/deposit_acc_details3.json"), DepositAccount.class);
+        depositAccountsRepository.save(depositAccount);
+
+    	
+	}
 }

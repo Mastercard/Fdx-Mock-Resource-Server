@@ -121,6 +121,73 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Get Statement",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer {{authorize_token}}"
+									}
+								],
+								"url": {
+									"raw": "http://{{host}}/fdx/v6/accounts/{{deposit_acc_1}}/statements",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"fdx",
+										"v6",
+										"accounts",
+										"{{deposit_acc_1}}",
+										"statements"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Statement By StatementId",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authorize_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/pdf",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{host}}/fdx/v6/accounts/{{deposit_acc_1}}/statements/40004",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"fdx",
+										"v6",
+										"accounts",
+										"{{deposit_acc_1}}",
+										"statements",
+										"40004"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -233,6 +300,73 @@
 										"accounts",
 										"{{loan_acc_1}}",
 										"payment-networks"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Statement",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer {{authorize_token}}"
+									}
+								],
+								"url": {
+									"raw": "http://{{host}}/fdx/v6/accounts/{{loan_acc_1}}/statements",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"fdx",
+										"v6",
+										"accounts",
+										"{{loan_acc_1}}",
+										"statements"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Statement By StatementId",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authorize_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/pdf",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{host}}/fdx/v6/accounts/{{loan_acc_1}}/statements/50005",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"fdx",
+										"v6",
+										"accounts",
+										"{{loan_acc_1}}",
+										"statements",
+										"50005"
 									]
 								}
 							},

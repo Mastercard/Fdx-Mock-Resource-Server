@@ -15,6 +15,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -105,5 +107,17 @@ class FdxResourceServerControllerTest {
 		accountPaymentNetworkList.setPaymentNetworks(accountPaymentNetworks);
 		when(fdxResourceService.getPaymentNetworksDetails(any())).thenReturn(accountPaymentNetworkList);
 		mockMvc.perform(get("/fdx/v6/accounts/20001/payment-networks").headers(headers)).andExpect(status().isOk());
+	}
+	
+	@Test
+	void testGetStatements() throws Exception {
+		when(fdxResourceService.getStatements(any())).thenReturn(new ResponseEntity<>(HttpStatus.OK));
+		mockMvc.perform(get("/fdx/v6/accounts/20001/statements").headers(headers)).andExpect(status().isOk());
+	}
+	
+	@Test
+	void testGetStatementByStatementId() throws Exception {
+		when(fdxResourceService.getStatementsByStatementId(any(),any())).thenReturn(new ResponseEntity<>(HttpStatus.OK));
+		mockMvc.perform(get("/fdx/v6/accounts/20001/statements/40001").headers(headers)).andExpect(status().isOk());
 	}
 }

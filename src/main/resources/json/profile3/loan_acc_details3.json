@@ -1,0 +1,24 @@
+{
+  "accountCategory": "LOAN_ACCOUNT",
+  "accountId": "4023555",
+   "balanceAsOf": "2017-11-05T13:15:30.751Z",
+   "institutionAccountId": "4023555",
+  "accountType": "LOAN",
+  "accountNumberDisplay": "XXXX3555",
+  "accountNumber": "3467263457",
+  "productName":"HOME LOAN",
+  "status": "CLOSED",
+  "description": "My Home Loan Acc XXXX3555",
+  "nickname": "My Home Loan Acc XXXX3555",
+  "routingTransitNumber": "245897",
+  "currency": {
+    "currencyCode": "USD"
+  },
+  "interestRate": 6,
+  "loanTerm": 0,
+  "totalNumberOfPayments": 0,
+  "principalBalance": 24924,
+   "loanTerm": 30,
+  "nextPaymentDate": "2017-12-01",
+   "nextPaymentAmount": 2333.32
+}

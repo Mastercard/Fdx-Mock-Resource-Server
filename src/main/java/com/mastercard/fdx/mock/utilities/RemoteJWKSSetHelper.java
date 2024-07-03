@@ -19,11 +19,10 @@ import java.net.URL;
 @Slf4j
 public class RemoteJWKSSetHelper {
 
-	public JWKSource<SecurityContext> getRemoteJWKSource(String url, String finRequestId) throws MalformedURLException {
+	public JWKSource<SecurityContext> getRemoteJWKSource(String url, String finRequestId,
+			DefaultResourceRetriever defaultResourceRetriever) throws MalformedURLException {
 		log.info("FI-Tracker-id/x-fapi-interaction-id: {} inside getRemoteJWKSource", finRequestId);
-		int connectTimeoutInMs = 5000;
-		int readTimeoutInMs = 5000;
-		return JWKSourceBuilder.create(new URL(url), new DefaultResourceRetriever(connectTimeoutInMs, readTimeoutInMs))
+		return JWKSourceBuilder.create(new URL(url), defaultResourceRetriever)
 				.retrying(true)
 				.cache(true).build();
 	}

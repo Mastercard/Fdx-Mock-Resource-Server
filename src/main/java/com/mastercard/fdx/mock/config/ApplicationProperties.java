@@ -19,6 +19,7 @@ public class ApplicationProperties {
 	
 	@Value("${mock.auth.server.jwks.uri.path}")
 	private String authServerJwksUriPath;
-	
-	
+
+	@Value("${mock.auth.issuer.url}")
+	private String issuerUrl;
 }

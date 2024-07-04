@@ -25,6 +25,7 @@ This server acts as a central hub for accessing account information, transaction
 1. An IDE that supports Java 17 or above (e.g., Eclipse, IntelliJ, STS).
 2. Java installed on your local system.
 3. Postman installed on your local system.
+4. Docker: Install Docker (Required only for running in docker)
 
 ## Installation Instructions
 1. Download the project from GitHub.
@@ -38,6 +39,22 @@ This server acts as a central hub for accessing account information, transaction
 1. To run the API, you need an authorization token from the `Fdx-Mock-Auth-Server` project. Refer to the README file of the `Fdx-Mock-Auth-Server` project for details.
 2. Update the authorization token in the environment variable `authorize_token`.
 3. Once the valid token is updated in the environment variable, you can hit the API endpoints to get the responses.
+
+## Instructions for Building a Docker Image
+1. Uncomment the below properties so that the resource server can interact with the authorization server running on the docker container.
+    1. mock.auth.issuer.url=http://localhost:8080
+    2. mock.auth.server.url=http://fdx.mock.auth.server:8080
+2. Build the Docker image using the Docker build command. Run this command from the directory containing the Dockerfile.
+    1. "docker build -t fdx-mock-resource-server ."
+3. Verify that the Docker image was successfully created. You should see <image-name> listed in the output.
+4. Since both servers will be running on Docker containers, their hosts will be localhost.
+   Each Docker container runs in its own isolated network namespace. The localhost within docker1 refers to docker1 itself, not to docker2. They will not be able to interact with each other.
+5. To establish communication between Docker containers (docker1 and docker2) using Docker's port mapping (publishing ports).
+   Create a user-defined bridge network, make sure both containers are connected to the same network and that they can resolve each other's container names.
+6. Commands to create a custom network and run the containers are :
+    1. `docker network create my-network`
+    2. `docker run -d --network=my-network -p 8080:8080 --name fdx.mock.auth.server fdx-mock-auth-server`
+    3. `docker run -d --network=my-network -p 9090:9090 --name fdx.mock.resource.server fdx-mock-resource-server`
 
 ## License
 This is an open-source project and does not have any specific licensing.

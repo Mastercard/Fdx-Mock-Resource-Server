@@ -66,7 +66,7 @@ public class AuthorizationInterceptor implements HandlerInterceptor{
 
 	                JWTClaimsSetVerifier<SecurityContext> claimsVerifier = new DefaultJWTClaimsVerifier<>(
 	                        new JWTClaimsSet.Builder()
-	                                .issuer(appProps.getAuthServerBaseUrl())
+	                                .issuer(appProps.getIssuerUrl())
 	                                .build(),
 	                        // names of required claims
 	                        new HashSet<>(Collections.emptyList())

@@ -15,11 +15,11 @@ This server acts as a central hub for accessing account information, transaction
 ## List of Endpoints
 1. **Get All Account List**: `/accounts` - Returns all accounts of the consented user.
 2. **Account Details**: `/accounts/{account_id}` - Returns detailed account information for a specific account ID.
-3. **Transaction Details**: `/account/{account_id}/transactions` - Returns transaction details for a specific account ID.
-4. **Payment Network Details**: `/account/{account_id}/payment-networks` - Returns payment network information for a specific account ID.
-5. **Contact Details**: `/account/{account_id}/contact` - Returns account holder information for a specific account ID.
-6. **Get All Statements**: `/account/{account_id}/statements` - Returns account statements information for a specific account ID.
-7. **Statements Details**: `/account/{account_id}/statements/{statement_id}` - Returns account statements information for a specific statement ID.
+3. **Transaction Details**: `/accounts/{account_id}/transactions` - Returns transaction details for a specific account ID.
+4. **Payment Network Details**: `/accounts/{account_id}/payment-networks` - Returns payment network information for a specific account ID.
+5. **Contact Details**: `/accounts/{account_id}/contact` - Returns account holder information for a specific account ID.
+6. **Get All Statements**: `/accounts/{account_id}/statements` - Returns account statements information for a specific account ID.
+7. **Statements Details**: `/accounts/{account_id}/statements/{statement_id}` - Returns account statements information for a specific statement ID.
 
 ## Prerequisites
 1. An IDE that supports Java 17 or above (e.g., Eclipse, IntelliJ, STS).

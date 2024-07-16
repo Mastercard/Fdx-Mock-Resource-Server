@@ -45,7 +45,25 @@ import lombok.extern.slf4j.Slf4j;
 @Configuration
 public class DataLoader {
 
+    private static String pwd = "password";
 
+    /**
+     * Below bean configuration loads the profile data at boot time.
+     * All the data associated with each profiles like accounts, transactions, contacts, payment network, statements are
+     * read from json and saved into h2 database.
+     * @param accountsRepository
+     * @param depositAccountsRepository
+     * @param loanAccountsRepository
+     * @param investmentAccountsRepository
+     * @param lineOfCreditAccountsRepository
+     * @param transactionsRepository
+     * @param contactRepository
+     * @param paymentNetworksRepository
+     * @param consentRepository
+     * @param fdxUserRepository
+     * @param statementRepository
+     * @return
+     */
     @Bean
     CommandLineRunner runner(AccountsRepository accountsRepository,
                              DepositAccountsRepository depositAccountsRepository,
@@ -73,9 +91,9 @@ public class DataLoader {
                 		 consentRepository, fdxUserRepository, mapper);
 
 
-                log.info("All Profile and accout save successfully");
+                log.info("All Profile and account data saved successfully");
             } catch (Exception e){
-                log.error("Unable to save profile and account resposne: " + e.getMessage());
+                log.error("Unable to save profile and account response: " + e.getMessage());
             }
         };
     }
@@ -90,7 +108,7 @@ public class DataLoader {
                                 FdxUserRepository fdxUserRepository, ObjectMapper mapper,StatementRepository statementRepository)
             throws IOException {
         // 1. Create user
-        FdxUser fdxUser = new FdxUser(1, "fdxuser", CommonUtilities.encrypthash("password"),null);
+        FdxUser fdxUser = new FdxUser(1, "fdxuser", CommonUtilities.encrypthash(pwd),null);
         fdxUserRepository.save(fdxUser);
 
         //2. saving account for profile of fdxuser...
@@ -138,10 +156,10 @@ public class DataLoader {
         List<AccountPaymentNetwork> accountPaymentNetworkList =   mapper.readValue(CommonUtilities.getFileContent("payment_network_list.json"), new TypeReference<List<AccountPaymentNetwork>>() {});
         paymentNetworksRepository.saveAll(accountPaymentNetworkList);
         
-        ClassPathResource resource = new ClassPathResource("sample-statements/Bank Account Sample Statement.pdf");
+        ClassPathResource resource = new ClassPathResource("sample-statements/40004.pdf");
         InputStream inputStream = resource.getInputStream();
         
-        ClassPathResource resource1 = new ClassPathResource("sample-statements/statement_sample.pdf");
+        ClassPathResource resource1 = new ClassPathResource("sample-statements/50005.pdf");
         InputStream inputStream1 = resource1.getInputStream();
         
         
@@ -165,7 +183,7 @@ public class DataLoader {
                                  FdxUserRepository fdxUserRepository, ObjectMapper mapper)
             throws JsonProcessingException, JsonMappingException {
         // 1. Create user
-        FdxUser fdxUser = new FdxUser(2, "fdxuser1", CommonUtilities.encrypthash("password"),null);
+        FdxUser fdxUser = new FdxUser(2, "fdxuser1", CommonUtilities.encrypthash(pwd),null);
         fdxUserRepository.save(fdxUser);
 
         //2. saving account for profile of fdxuser1...
@@ -213,7 +231,7 @@ public class DataLoader {
                                  FdxUserRepository fdxUserRepository, ObjectMapper mapper)
             throws JsonProcessingException, JsonMappingException {
         // 1. Create user
-        FdxUser fdxUser = new FdxUser(3, "fdxuser2", CommonUtilities.encrypthash("password"),null);
+        FdxUser fdxUser = new FdxUser(3, "fdxuser2", CommonUtilities.encrypthash(pwd),null);
         fdxUserRepository.save(fdxUser);
 
         //2. saving account for profile of fdxuser1...
@@ -248,7 +266,7 @@ public class DataLoader {
 			FdxUserRepository fdxUserRepository, ObjectMapper mapper) throws JsonMappingException, JsonProcessingException {
     	
     	 // 1. Create user
-        FdxUser fdxUser = new FdxUser(4, "fdxuser3", CommonUtilities.encrypthash("password"),null);
+        FdxUser fdxUser = new FdxUser(4, "fdxuser3", CommonUtilities.encrypthash(pwd),null);
         fdxUserRepository.save(fdxUser);
 
         //2. saving account for profile of fdxuser3 with all closed accounts...

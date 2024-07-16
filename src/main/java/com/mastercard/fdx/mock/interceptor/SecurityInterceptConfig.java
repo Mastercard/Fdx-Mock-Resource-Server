@@ -4,7 +4,6 @@ import jakarta.annotation.PostConstruct;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -24,7 +23,11 @@ public class SecurityInterceptConfig {
 	@Setter
 	private List<RequestMethodUriToken> requestMethodUriTokens;
 	private Map<RequestMethodUri, String> requestMethodUriTokenMapping;
-	
+
+	/**
+	 * Below method will config the security interceptor for Authorization header validations.
+	 * Configures HTTP METHOD & ENDPOINT that requires internal security token stored in secret service or environment variable.
+	 */
 	@PostConstruct
 	public void initMapping() {
 		if (Objects.nonNull(requestMethodUriTokens)) {

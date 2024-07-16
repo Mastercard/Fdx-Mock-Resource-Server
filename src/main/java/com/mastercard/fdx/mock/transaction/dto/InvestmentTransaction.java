@@ -10,6 +10,8 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Calendar;
 
 @Setter
@@ -18,8 +20,11 @@ import java.util.Calendar;
 @Entity
 @Table(name = "mock_investment_transactions_details")
 @JsonInclude(Include.NON_NULL)
-public class InvestmentTransaction extends TransactionsDetails {
-	
+public class InvestmentTransaction extends TransactionsDetails implements Serializable {
+
+	@Serial
+	private static final long serialVersionUID = -5846801446702648111L;
+
 	private Double shares;
 
 	private Double faceValue;

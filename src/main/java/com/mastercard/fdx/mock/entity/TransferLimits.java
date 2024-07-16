@@ -12,14 +12,20 @@ import jakarta.persistence.Embedded;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serial;
+import java.io.Serializable;
+
 @Getter
 @Setter
 @Embeddable
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
-public class TransferLimits {
+public class TransferLimits implements Serializable {
 
-	  @AttributeOverrides({
+	@Serial
+	private static final long serialVersionUID = -8742075060209746668L;
+
+	@AttributeOverrides({
 	    @AttributeOverride(name="day",column=@Column(name="transfer_out_day")),
 	    @AttributeOverride(name="week",column=@Column(name="transfer_out_week")),
 	    @AttributeOverride(name="month",column=@Column(name="transfer_out_month")),

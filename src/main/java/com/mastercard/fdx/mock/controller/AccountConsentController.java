@@ -20,7 +20,14 @@ public class AccountConsentController {
 
 	@Autowired
 	AccountConsentService accountConsentService;
-	
+
+	/**
+	 * Below API is called by the Auth server based on the logged-in user,
+	 * to display the list of accounts that are available for consent.
+	 * @param userId
+	 * @param authorization
+	 * @return
+	 */
 	@GetMapping("/accounts")
 	public ResponseEntity<List<Accounts>> getAccountsByUserId(@RequestParam String userId,
 															  @RequestHeader(value = "Authorization") String authorization){
@@ -36,14 +43,29 @@ public class AccountConsentController {
 		return new ResponseEntity<>(responseList,HttpStatus.OK);
 		
 	}
-	
+
+	/**
+	 * Below API is called by the Auth server. Once the user selects the accounts and confirms the consent.
+	 * Consent is stored with selected account-ids.
+	 * @param consent
+	 * @param authorization
+	 * @return
+	 */
 	@PostMapping("")
 	public ResponseEntity<AccountConsentResponse> registerConsent(@RequestBody AccountConsent consent,
 																  @RequestHeader(value = "Authorization") String authorization){
 		return new ResponseEntity<>(accountConsentService.saveConsentAccount(consent),HttpStatus.OK);
 		
 	}
-	
+
+	/**
+	 * Below API is called by the Auth server when the flow is Amend consent, consent is updated for existing
+	 * consent id. Consent is stored with selected account-ids.
+	 * @param consent
+	 * @param consentId
+	 * @param authorization
+	 * @return
+	 */
 	@PutMapping("/{consentId}")
 	public ResponseEntity<AccountConsentResponse> updateConsent(@RequestBody AccountConsent consent,
 																@PathVariable(name = "consentId") String consentId,

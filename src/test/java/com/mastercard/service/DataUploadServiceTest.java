@@ -87,6 +87,7 @@ class DataUploadServiceTest {
 	 
 	 @Test
 	 void testAddAccountsInvalidAccountCategoryId() throws JsonMappingException, JsonProcessingException, JSONException {
+		 when(fdxUserRepository.findByUserId(any())).thenReturn(new FdxUser(1, "test", "testpwd", "testpwd"));
 		 List<Object> accountJsonObject = new ArrayList<>();
 		 DepositAccount depositAccount = new DepositAccount();
 		 depositAccount.setAccountCategory("XXXXXX");

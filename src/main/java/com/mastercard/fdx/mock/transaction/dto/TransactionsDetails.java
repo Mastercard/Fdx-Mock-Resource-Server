@@ -9,6 +9,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
 
@@ -19,7 +21,10 @@ import java.util.List;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "mock_transactions")
-public class TransactionsDetails {
+public class TransactionsDetails implements Serializable {
+
+	@Serial
+	private static final long serialVersionUID = 3474800389060366395L;
 
 	@JsonIgnore
 	@Id

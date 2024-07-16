@@ -6,11 +6,17 @@ import jakarta.persistence.Embeddable;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serial;
+import java.io.Serializable;
+
 @Getter
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Embeddable
-public class AccountHolderName {
+public class AccountHolderName implements Serializable {
+	@Serial
+	private static final long serialVersionUID = -4752646932100799574L;
+
 	private String first;
 	private String middle;
 	private String last;

@@ -41,6 +41,14 @@ public class RequestInterceptor implements HandlerInterceptor {
 		listOfUniqueTokenSet.add(applicationProperties.getResourceServerAuthCode());
 	}
 
+	/**
+	 * Below method will intercept the request and validate whether for this API call,
+	 * validation needs to be performed with internal tokens or allow the request to continue processing.
+	 * @param req
+	 * @param response
+	 * @param handler
+	 * @return
+	 */
 	@Override
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse response, Object handler) {
 		log.debug("Incoming Request:- {} {} ", req.getMethod(), req.getRequestURI());

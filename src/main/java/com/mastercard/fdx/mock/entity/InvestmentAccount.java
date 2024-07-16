@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
 
@@ -16,10 +17,8 @@ import java.util.List;
 @JsonInclude(Include.NON_NULL)
 public class InvestmentAccount extends AccountDescriptor implements Serializable{
 
-
-	private static final long serialVersionUID = 1L;
-
-		
+	@Serial
+	private static final long serialVersionUID = -7743529580387654009L;
 	private boolean allowedCheckWriting;
 	private boolean allowedOptionTrade;
 	private Double currentValue;

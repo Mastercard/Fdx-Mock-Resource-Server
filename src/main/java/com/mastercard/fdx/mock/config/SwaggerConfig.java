@@ -19,13 +19,13 @@ public class SwaggerConfig {
 	private static final String API_KEY = "apiKey";
 
 	@Bean
-	public OpenAPI springDIClientOpenAPI() {
+	public OpenAPI springOpenAPI() {
 		return new OpenAPI().addServersItem(new Server().url("/"))
-			.info(new Info().title("Welcome to FDX Mock Resource Server API!")
-				.description("FDX Mock Resource Server API reference for developers")
+			.info(new Info().title("Welcome to Fdx Mock Resource Server API!")
+				.description("Fdx Mock Resource Server API reference for developers")
 				.version("1.0.0")
-				.termsOfService("http://mastercard.com")
-				.license(new License().name("Mastercard Product").url("http://mastercard.com")))
+				.termsOfService("https://mastercard.com")
+				.license(new License().name("Mastercard Product").url("https://mastercard.com")))
 				.addSecurityItem(new SecurityRequirement().addList(API_KEY))
 				.components(new Components().addSecuritySchemes(API_KEY, apiKeySecuritySchema()));
 	}

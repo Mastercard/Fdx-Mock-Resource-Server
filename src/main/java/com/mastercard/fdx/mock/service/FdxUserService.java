@@ -22,8 +22,8 @@ public class FdxUserService {
 		if(Objects.isNull(fdxUser)) {
 			FdxUser fdxUser2 = new FdxUser();
 		  	fdxUser2.setErrorCode(1002);
-		  	fdxUser2.setErrorMessage("No User Founds");
-			return new ResponseEntity<>(fdxUser2,HttpStatus.BAD_REQUEST);
+		  	fdxUser2.setErrorMessage("User not found");
+			return new ResponseEntity<>(fdxUser2, HttpStatus.NOT_FOUND);
 		}
 		return  new ResponseEntity<>(fdxUser,HttpStatus.OK);
 	}

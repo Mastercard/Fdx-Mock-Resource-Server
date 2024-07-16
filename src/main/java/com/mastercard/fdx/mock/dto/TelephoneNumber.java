@@ -6,11 +6,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serial;
+import java.io.Serializable;
+
 @Getter
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
+public class TelephoneNumber implements Serializable {
 
-public class TelephoneNumber {
+	@Serial
+	private static final long serialVersionUID = 8139286700243032207L;
 
 	@JsonProperty("type")
 	private String type;

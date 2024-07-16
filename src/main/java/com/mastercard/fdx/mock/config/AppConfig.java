@@ -16,6 +16,12 @@ public class AppConfig implements  WebMvcConfigurer{
 	@Autowired
 	private AuthorizationInterceptor cdrAuthorizationInterceptor;
 
+	/**
+	 * Added 2 interceptors to registry
+	 * 1) requestInterceptor, for service-to-service communication that doesn't require OAuth tokens.
+	 * 2) cdrAuthorizationInterceptor, for client-to-server communication that requires OAuth tokens.
+	 * @param registry
+	 */
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(requestInterceptor);

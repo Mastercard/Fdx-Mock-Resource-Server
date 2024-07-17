@@ -14,6 +14,8 @@ import lombok.Setter;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.List;
 
 @Getter
@@ -23,9 +25,11 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 @Inheritance(strategy = InheritanceType.JOINED)
-public class AccountContact extends ErrorPojo{
+public class AccountContact extends ErrorPojo implements Serializable {
 
-	
+	@Serial
+	private static final long serialVersionUID = -8407347710587958599L;
+
 	@JsonIgnore
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

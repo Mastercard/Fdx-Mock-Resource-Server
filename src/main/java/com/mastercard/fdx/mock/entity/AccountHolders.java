@@ -9,6 +9,8 @@ import jakarta.persistence.Embedded;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Calendar;
 
 @Getter
@@ -16,8 +18,11 @@ import java.util.Calendar;
 @Embeddable 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
-public class AccountHolders  {
-	
+public class AccountHolders implements Serializable {
+
+	@Serial
+	private static final long serialVersionUID = -1648217302019372702L;
+
 	private String relationship;
 	
 	@JsonProperty("customerId")

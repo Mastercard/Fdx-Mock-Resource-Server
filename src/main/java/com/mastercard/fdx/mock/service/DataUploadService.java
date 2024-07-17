@@ -26,45 +26,52 @@ import java.util.Objects;
 @Slf4j
 public class DataUploadService {
 
-	 ObjectMapper mapper = new ObjectMapper();
+	ObjectMapper mapper = new ObjectMapper();
 
-	
-	 @Autowired
-	 DepositAccountsRepository depositAccountsRepository;
-	 
-	 @Autowired
-	 LoanAccountsRepository loanAccountsRepository; 
-	 
-	 @Autowired
-	 InvestmentAccountsRepository investmentAccountsRepository;
-	 
-	 @Autowired
-	 LineOfCreditAccountsRepository lineOfCreditAccountsRepository;
-	 
-	 @Autowired
-	 AccountConsentRepository accountConsentRepository;
-	 
-	 @Autowired
-	 FdxUserRepository fdxUserRepository;
-	 
-	 @Autowired
-	 TransactionsRepository transactionsRepository;
-	 
-	 public ResponseEntity<DataUploadResponsePojo> addAccount(String userId,List<Object> accountJsonObject) throws JsonProcessingException, JSONException{
-		 DataUploadResponsePojo dataUploadResponsePojo = new DataUploadResponsePojo();
-		 List<String> allAccountId=new ArrayList<>();
-		 for (Object entry: accountJsonObject) {
-			 JSONObject jsonObject = new JSONObject(mapper.writeValueAsString(entry));
+
+	@Autowired
+	DepositAccountsRepository depositAccountsRepository;
+
+	@Autowired
+	LoanAccountsRepository loanAccountsRepository;
+
+	@Autowired
+	InvestmentAccountsRepository investmentAccountsRepository;
+
+	@Autowired
+	LineOfCreditAccountsRepository lineOfCreditAccountsRepository;
+
+	@Autowired
+	AccountConsentRepository accountConsentRepository;
+
+	@Autowired
+	FdxUserRepository fdxUserRepository;
+
+	@Autowired
+	TransactionsRepository transactionsRepository;
+
+	private static String INV_ACC_CAT = "Invalid Account Category";
+
+	public ResponseEntity<DataUploadResponsePojo> addAccount(String userId,List<Object> accountJsonObject) throws JsonProcessingException, JSONException{
+		try {
+			validateUserId(userId);
+		} catch (ApiException e) {
+			return new ResponseEntity<>(new DataUploadResponsePojo(e.getErrorPojo().getErrorCode(), e.getErrorPojo().getErrorMessage()), HttpStatus.BAD_REQUEST);
+		}
+		DataUploadResponsePojo dataUploadResponsePojo = new DataUploadResponsePojo();
+		List<String> allAccountId=new ArrayList<>();
+		for (Object entry: accountJsonObject) {
+			JSONObject jsonObject = new JSONObject(mapper.writeValueAsString(entry));
 			String accountCategory = jsonObject.getString("accountCategory");
 			try {
-				validateUserIdAndAccountCategory(accountCategory,userId);
-				
+				validateAccountCategory(accountCategory);
+
 				if(StringUtils.equalsIgnoreCase("DEPOSIT_ACCOUNT", accountCategory)) {
 					DepositAccount depositAccount = mapper.readValue(jsonObject.toString(), DepositAccount.class);
 					DepositAccount response=depositAccountsRepository.save(depositAccount);
 					allAccountId.add(String.valueOf(response.getInstitutionAccountId()));
 				}
-				
+
 				else if(StringUtils.equalsIgnoreCase("LOAN_ACCOUNT", accountCategory)) {
 					LoanAccount loanAccount = mapper.readValue(jsonObject.toString(), LoanAccount.class);
 					LoanAccount response=loanAccountsRepository.save(loanAccount);
@@ -81,8 +88,8 @@ public class DataUploadService {
 					allAccountId.add(String.valueOf(response.getInstitutionAccountId()));
 				}
 				else {
-					ErrorPojo errorPojo = new ErrorPojo(1002, "Invalid Account Category");
-					throw new ApiException(HttpStatus.BAD_REQUEST,errorPojo, "Invalid Account Category");
+					ErrorPojo errorPojo = new ErrorPojo(1002, INV_ACC_CAT);
+					throw new ApiException(HttpStatus.BAD_REQUEST,errorPojo, INV_ACC_CAT);
 				}
 			}
 			catch (ApiException e) {
@@ -96,44 +103,45 @@ public class DataUploadService {
 				return new ResponseEntity<>(errorDataUploadResponsePojo, HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 		}
-			AccountConsent accountConsent = new AccountConsent();
-			accountConsent.setUserId(userId);
-			
-		 	AccountConsent existingAccount = accountConsentRepository.findAccountsByUserId(userId);
-		 	if(Objects.nonNull(existingAccount) && !existingAccount.getAllAccountIds().isEmpty()) {
-		 		allAccountId.addAll(existingAccount.getAllAccountIds());
-		 		existingAccount.setAllAccountIds(allAccountId);
-		 		accountConsentRepository.save(existingAccount);
-		 	}
-		 	else {
-		 		accountConsent.setAllAccountIds(allAccountId);
-		 		accountConsentRepository.save(accountConsent);
-		 	}
-			dataUploadResponsePojo.setCode(0);
-			dataUploadResponsePojo.setMessage("Success");
-		return new ResponseEntity<>(dataUploadResponsePojo,HttpStatus.OK);
-	 }
-	 
-	 public ResponseEntity<DataUploadResponsePojo> addTransactions(List<TransactionsDetails> transactionsDetails){
-		 	transactionsRepository.saveAll(transactionsDetails);
-			DataUploadResponsePojo dataUploadResponsePojo = new DataUploadResponsePojo();
-			dataUploadResponsePojo.setCode(0);
-			dataUploadResponsePojo.setMessage("Success");
-			return new ResponseEntity<>(dataUploadResponsePojo,HttpStatus.OK);
-	 }
-	 
-	 private void validateUserIdAndAccountCategory(String accountCategory,String userId) throws ApiException {
-			if(!AccountCategory.validate(accountCategory))
-			{
-				ErrorPojo errorPojo = new ErrorPojo(1002, "Invalid Account Category");
-				throw new ApiException(HttpStatus.BAD_REQUEST,errorPojo, "Invalid Account Category");
-				
-			}
-			FdxUser fdxUser = fdxUserRepository.findByUserId(userId);
-			if(Objects.isNull(fdxUser))
-			{
-				ErrorPojo errorPojo = new ErrorPojo(1001, "No User Found");
-				throw new ApiException(HttpStatus.BAD_REQUEST,errorPojo, "No User Found");
-			}
+		AccountConsent accountConsent = new AccountConsent();
+		accountConsent.setUserId(userId);
+
+		AccountConsent existingAccount = accountConsentRepository.findAccountsByUserId(userId);
+		if(Objects.nonNull(existingAccount) && !existingAccount.getAllAccountIds().isEmpty()) {
+			allAccountId.addAll(existingAccount.getAllAccountIds());
+			existingAccount.setAllAccountIds(allAccountId);
+			accountConsentRepository.save(existingAccount);
 		}
+		else {
+			accountConsent.setAllAccountIds(allAccountId);
+			accountConsentRepository.save(accountConsent);
+		}
+		dataUploadResponsePojo.setCode(0);
+		dataUploadResponsePojo.setMessage("Success");
+		return new ResponseEntity<>(dataUploadResponsePojo,HttpStatus.OK);
+	}
+
+	public ResponseEntity<DataUploadResponsePojo> addTransactions(List<TransactionsDetails> transactionsDetails){
+		transactionsRepository.saveAll(transactionsDetails);
+		DataUploadResponsePojo dataUploadResponsePojo = new DataUploadResponsePojo();
+		dataUploadResponsePojo.setCode(0);
+		dataUploadResponsePojo.setMessage("Success");
+		return new ResponseEntity<>(dataUploadResponsePojo,HttpStatus.OK);
+	}
+
+	private void validateAccountCategory(String accountCategory) throws ApiException {
+		if(!AccountCategory.validate(accountCategory)) {
+			ErrorPojo errorPojo = new ErrorPojo(1002, INV_ACC_CAT);
+			throw new ApiException(HttpStatus.BAD_REQUEST,errorPojo, INV_ACC_CAT);
+		}
+	}
+
+	private void validateUserId(String userId) throws ApiException {
+		FdxUser fdxUser = fdxUserRepository.findByUserId(userId);
+		if(Objects.isNull(fdxUser))
+		{
+			ErrorPojo errorPojo = new ErrorPojo(1001, "No User Found");
+			throw new ApiException(HttpStatus.BAD_REQUEST,errorPojo, "No User Found");
+		}
+	}
 }

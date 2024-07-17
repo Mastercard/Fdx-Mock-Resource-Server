@@ -1,5 +1,7 @@
 package com.mastercard.fdx.mock.entity;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Calendar;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -18,8 +20,10 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "mock_statement")
-public class Statement {
-		
+public class Statement implements Serializable {
+
+	@Serial
+	private static final long serialVersionUID = -2785640884578001065L;
 
 	@JsonIgnore
 	@Id

@@ -9,6 +9,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -17,7 +19,10 @@ import java.util.List;
 @Entity
 @JsonIgnoreProperties(ignoreUnknown =  true)
 @JsonInclude(Include.NON_NULL)
-public class Holding {
+public class Holding implements Serializable {
+
+	@Serial
+	private static final long serialVersionUID = -4854843150430195052L;
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

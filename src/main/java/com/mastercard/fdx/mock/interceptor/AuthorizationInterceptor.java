@@ -50,7 +50,15 @@ public class AuthorizationInterceptor implements HandlerInterceptor{
 	    @Value("#{'${intercept.res.server.excluded.urls}'.split(',')}")
 	    private List<String> excludedUrls;
 
-	    @Override
+		/**
+		 * Below method will intercept the request and validate whether for this API call,
+		 * validation needs to be performed based on OAuth token received.
+		 * @param req
+		 * @param response
+		 * @param handler
+		 * @return
+		 */
+		@Override
 	    public boolean preHandle(HttpServletRequest req, HttpServletResponse response, Object handler) {
 	        if (!ignoreRequest(req.getRequestURI())) {
 	            validateAuthorization(req);

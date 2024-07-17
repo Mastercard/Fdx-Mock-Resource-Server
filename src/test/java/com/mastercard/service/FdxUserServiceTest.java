@@ -35,7 +35,7 @@ class FdxUserServiceTest {
 	void testGetUserNoUserFound() {
 		when(fdxUserRepository.findByUserId(any())).thenReturn(null);
 		ResponseEntity<FdxUser> response = fdxUserService.getUser("test");
-		assertEquals(response.getStatusCode(), HttpStatus.BAD_REQUEST);
+		assertEquals(response.getStatusCode(), HttpStatus.NOT_FOUND);
 	}
 	
 	@Test

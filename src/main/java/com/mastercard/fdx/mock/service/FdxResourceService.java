@@ -140,7 +140,7 @@ public class FdxResourceService {
 		return new ResponseEntity<>(statementsResponse,HttpStatus.OK);
 	}
 	
-	public ResponseEntity<?> getStatementsByStatementId(String accountId,String statementId) {
+	public ResponseEntity getStatementsByStatementId(String accountId,String statementId) {
 		if(Objects.isNull(accountsRepository.findByAccountId(accountId)))
 			return new ResponseEntity<>(new StatementsResponse(errorConfig.getAccountNotFoundErrorCode(), errorConfig.getAccountNotFoundErrorMsg()),HttpStatus.BAD_REQUEST);
 		

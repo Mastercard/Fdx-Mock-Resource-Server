@@ -44,28 +44,27 @@ public class AccountConsentService {
 	
 	public AccountConsentResponse saveConsentAccount(AccountConsent accountConsent) {
 		Optional<AccountConsent> accountsFromDB = Optional.ofNullable(accountConsentRepository.findAccountsByUserId(accountConsent.getUserId()));
-		if(accountsFromDB.isPresent()) {
-			accountsFromDB.get().setConsentId(UUID.randomUUID().toString());
-			accountsFromDB.get().setAccountIds(accountConsent.getAccountIds());
-			accountsFromDB.get().setConsentShareDurationSeconds(accountConsent.getConsentShareDurationSeconds());
-	     	AccountConsent response =  accountConsentRepository.save(accountsFromDB.get());
-			AccountConsentResponse accountConsentResponse = new AccountConsentResponse();
-			accountConsentResponse.setEndDate(new Timestamp(System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(response.getConsentShareDurationSeconds())));
-			accountConsentResponse.setCustomerId(response.getUserId());
-			accountConsentResponse.setConsentId(response.getConsentId());
-			return accountConsentResponse;
-		}
-		return null;
+		String newConsentId = UUID.randomUUID().toString();
+		return getAccountConsentResponse(accountConsent, accountsFromDB, newConsentId);
 	}
 
 	public AccountConsentResponse updateConsentAccount(AccountConsent consent, String consentId) {
 		Optional<AccountConsent> accountsFromDB = accountConsentRepository.findAccountsByConsentId(consentId);
+		return getAccountConsentResponse(consent, accountsFromDB, null);
+	}
+
+	private AccountConsentResponse getAccountConsentResponse(AccountConsent accountConsent,
+			Optional<AccountConsent> accountsFromDB, String newConsentId) {
 		if(accountsFromDB.isPresent()) {
-			accountsFromDB.get().setAccountIds(consent.getAccountIds());
-			accountsFromDB.get().setConsentShareDurationSeconds(consent.getConsentShareDurationSeconds());
-	     	AccountConsent response =  accountConsentRepository.save(accountsFromDB.get());
+			if(newConsentId != null) {
+				accountsFromDB.get().setConsentId(newConsentId);
+			}
+			accountsFromDB.get().setAccountIds(accountConsent.getAccountIds());
+			accountsFromDB.get().setConsentShareDurationSeconds(accountConsent.getConsentShareDurationSeconds());
+			AccountConsent response = accountConsentRepository.save(accountsFromDB.get());
 			AccountConsentResponse accountConsentResponse = new AccountConsentResponse();
-			accountConsentResponse.setEndDate(new Timestamp(System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(response.getConsentShareDurationSeconds())));
+			accountConsentResponse.setEndDate(new Timestamp(
+					System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(response.getConsentShareDurationSeconds())));
 			accountConsentResponse.setCustomerId(response.getUserId());
 			accountConsentResponse.setConsentId(response.getConsentId());
 			return accountConsentResponse;

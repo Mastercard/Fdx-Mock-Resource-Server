@@ -25,14 +25,28 @@ public class DataUploadController {
 	
 	@Autowired
 	DataUploadService dataUploadService;
-	 
 
+	/**
+	 * Below API will save accounts data for the existing profile or newly created profile.
+	 * All account types are supported for save distinguised by accountCategory:
+	 * DEPOSIT_ACCOUNT, LOAN_ACCOUNT, INVESTMENT_ACCOUNT, LOC_ACCOUNT
+	 * @param userId
+	 * @param accountJsonObject
+	 * @return
+	 * @throws JsonProcessingException
+	 * @throws JSONException
+	 */
 	@PostMapping(value = "/addAccount" ,produces = { "application/json" },
             consumes = { "application/json" })
 	public ResponseEntity<DataUploadResponsePojo> addAccount(@RequestParam String userId,@RequestBody List<Object> accountJsonObject) throws JsonProcessingException, JSONException {
 		return dataUploadService.addAccount(userId, accountJsonObject);
 	}
-	
+
+	/**
+	 * Below API will save transactions data for the specified accountId.
+	 * @param transactionsDetails
+	 * @return
+	 */
 	@PostMapping(value = "/addTransactions")
 	public ResponseEntity<DataUploadResponsePojo> addTransactions(@RequestBody List<TransactionsDetails> transactionsDetails){
 		return dataUploadService.addTransactions(transactionsDetails);

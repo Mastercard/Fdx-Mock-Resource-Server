@@ -9,6 +9,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
 @Getter
@@ -16,7 +17,9 @@ import java.util.Calendar;
 @Entity
 @JsonIgnoreProperties(ignoreUnknown =  true)
 @JsonInclude(Include.NON_NULL)
-public class OpenOrder {
+public class OpenOrder implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

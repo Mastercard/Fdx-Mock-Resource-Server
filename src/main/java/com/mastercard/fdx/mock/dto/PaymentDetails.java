@@ -4,10 +4,16 @@ import jakarta.persistence.Embeddable;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serial;
+import java.io.Serializable;
+
 @Setter
 @Getter
 @Embeddable
-public class PaymentDetails {
+public class PaymentDetails implements Serializable {
+
+	@Serial
+	private static final long serialVersionUID = -2226176657991987434L;
 
 	private Double principalAmount;
 

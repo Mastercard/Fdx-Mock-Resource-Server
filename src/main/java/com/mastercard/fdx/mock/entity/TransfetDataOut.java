@@ -12,13 +12,19 @@ import jakarta.persistence.Embedded;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serial;
+import java.io.Serializable;
+
 @Getter
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 @Embeddable
-public class TransfetDataOut {
+public class TransfetDataOut implements Serializable {
 
+	@Serial
+	private static final long serialVersionUID = -8996783511948836812L;
+	
 	@Embedded
 	@AttributeOverrides({
 	    @AttributeOverride(name="resetsOn",column=@Column(name="transferOut_day_resetsOn")),

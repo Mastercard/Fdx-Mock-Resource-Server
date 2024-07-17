@@ -19,20 +19,31 @@ public class FdxUserDetailsController {
 
 	@Autowired
 	FdxUserService fdxUserService;
-	
-	  
+
+	/**
+	 * Below API is used by the Authorization server for User validation.
+	 * @param authorization
+	 * @param userId
+	 * @return
+	 */
 	@GetMapping("/{userId}")
-	public ResponseEntity<FdxUser> getUser(@RequestHeader(value = "Authorization", required = false) String authorization ,
-										   @PathVariable String userId) {
+	public ResponseEntity<FdxUser> getUser(@RequestHeader(value = "Authorization") String authorization ,
+			@PathVariable String userId) {
 		return fdxUserService.getUser(userId);
 	}
-	
+
+	/**
+	 * Below API is used to create new users.
+	 * @param authorization
+	 * @param fdxUser
+	 * @return
+	 */
 	@PostMapping("")
-	public ResponseEntity<FdxUser> saveUser(@RequestHeader(value = "Authorization", required = false) String authorization,
-											@RequestBody FdxUser fdxUser) {
-		 return fdxUserService.saveUser(fdxUser);
+	public ResponseEntity<FdxUser> saveUser(@RequestHeader(value = "Authorization") String authorization,
+			@RequestBody FdxUser fdxUser) {
+		return fdxUserService.saveUser(fdxUser);
 	}
-	
-	
+
+
 
 }

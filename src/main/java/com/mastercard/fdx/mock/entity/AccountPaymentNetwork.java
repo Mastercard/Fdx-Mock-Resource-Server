@@ -15,13 +15,19 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serial;
+import java.io.Serializable;
+
 @Entity
 @Table(name = "payment_networks")
 @Getter
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
-public class AccountPaymentNetwork {
+public class AccountPaymentNetwork implements Serializable {
+
+	@Serial
+	private static final long serialVersionUID = -8342276781234148016L;
 
 	@JsonIgnore
 	@Id

@@ -134,7 +134,7 @@ public class FdxResourceServerController {
 	 * @return
 	 */
 	@GetMapping("/accounts/{accountId}/statements/{statementId}")
-	public ResponseEntity getStatementsByStatementId(@RequestHeader(value = "Authorization") String authorization,
+	public ResponseEntity<Object> getStatementsByStatementId(@RequestHeader(value = "Authorization") String authorization,
 			@PathVariable("accountId") String accountId,@PathVariable("statementId") String statementId){
 
 		try {

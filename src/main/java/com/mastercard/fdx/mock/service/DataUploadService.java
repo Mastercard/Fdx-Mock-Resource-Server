@@ -50,7 +50,7 @@ public class DataUploadService {
 	@Autowired
 	TransactionsRepository transactionsRepository;
 
-	private static String INV_ACC_CAT = "Invalid Account Category";
+	private static final String INV_ACC_CAT = "Invalid Account Category";
 
 	public ResponseEntity<DataUploadResponsePojo> addAccount(String userId,List<Object> accountJsonObject) throws JsonProcessingException, JSONException{
 		try {
@@ -86,10 +86,6 @@ public class DataUploadService {
 					LineOfCreditAccount lineOfCreditAccount = mapper.readValue(jsonObject.toString(), LineOfCreditAccount.class);
 					LineOfCreditAccount response=lineOfCreditAccountsRepository.save(lineOfCreditAccount);
 					allAccountId.add(String.valueOf(response.getInstitutionAccountId()));
-				}
-				else {
-					ErrorPojo errorPojo = new ErrorPojo(1002, INV_ACC_CAT);
-					throw new ApiException(HttpStatus.BAD_REQUEST,errorPojo, INV_ACC_CAT);
 				}
 			}
 			catch (ApiException e) {

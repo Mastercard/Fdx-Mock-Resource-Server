@@ -1,4 +1,4 @@
-package com.mastercard.service;
+package com.mastercard.fdx.mock.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mastercard.fdx.mock.dto.DataUploadResponsePojo;
 import com.mastercard.fdx.mock.entity.*;
 import com.mastercard.fdx.mock.repository.*;
-import com.mastercard.fdx.mock.service.DataUploadService;
 import com.mastercard.fdx.mock.transaction.dto.TransactionsDetails;
 import com.mastercard.fdx.mock.utilities.CommonUtilities;
 import org.json.JSONException;
@@ -55,25 +54,41 @@ class DataUploadServiceTest {
 	 
 	 @Test
 	 void testAddAccounts() throws JsonMappingException, JsonProcessingException, JSONException {
-		 when(fdxUserRepository.findByUserId(any())).thenReturn(new FdxUser(1, "test", "testpwd", "testpwd"));
-		 DepositAccount depositAccount = mapper.readValue(CommonUtilities.getFileContent("deposit_acc_details.json"), DepositAccount.class);
-		 LoanAccount loanAccounts = mapper.readValue(CommonUtilities.getFileContent("loan_acc_details.json"), LoanAccount.class);
-		 InvestmentAccount investmentAccount = mapper.readValue(CommonUtilities.getFileContent("investment_acc_details.json"), InvestmentAccount.class);
-		 LineOfCreditAccount lineOfCreditAccount = mapper.readValue(CommonUtilities.getFileContent("lineofcredit_acc_details.json"), LineOfCreditAccount.class);
-		 List<Object> accountJsonObject = new ArrayList<>();
-		 accountJsonObject.add(depositAccount);accountJsonObject.add(loanAccounts);
-		 accountJsonObject.add(investmentAccount);accountJsonObject.add(lineOfCreditAccount);
-		 
-		 when(depositAccountsRepository.save(any())).thenReturn(depositAccount);
-		 when(loanAccountsRepository.save(any())).thenReturn(loanAccounts);
-		 when(investmentAccountsRepository.save(any())).thenReturn(investmentAccount);
-		 when(lineOfCreditAccountsRepository.save(any())).thenReturn(lineOfCreditAccount);
-		 when(accountConsentRepository.save(any())).thenReturn(new AccountConsent());
+		 List<Object> accountJsonObject = commonForAddAccounts();
 		 ResponseEntity<DataUploadResponsePojo> response = dataUploadService.addAccount("test", accountJsonObject);
 		 assertNotNull(response);
 		 assertTrue( response.getStatusCode().is2xxSuccessful());
 	 }
-	 
+
+	@Test
+	void testAddAccounts1() throws JsonMappingException, JsonProcessingException, JSONException {
+		List<Object> accountJsonObject = commonForAddAccounts();
+		AccountConsent ac = new AccountConsent();
+		ac.setAllAccountIds(List.of("1"));
+		when(accountConsentRepository.findAccountsByUserId(any())).thenReturn(ac);
+		ResponseEntity<DataUploadResponsePojo> response = dataUploadService.addAccount("test", accountJsonObject);
+		assertNotNull(response);
+		assertTrue( response.getStatusCode().is2xxSuccessful());
+	}
+
+	List<Object> commonForAddAccounts() throws JsonProcessingException {
+		when(fdxUserRepository.findByUserId(any())).thenReturn(new FdxUser(1, "test", "testpwd", "testpwd"));
+		DepositAccount depositAccount = mapper.readValue(CommonUtilities.getFileContent("deposit_acc_details.json"), DepositAccount.class);
+		LoanAccount loanAccounts = mapper.readValue(CommonUtilities.getFileContent("loan_acc_details.json"), LoanAccount.class);
+		InvestmentAccount investmentAccount = mapper.readValue(CommonUtilities.getFileContent("investment_acc_details.json"), InvestmentAccount.class);
+		LineOfCreditAccount lineOfCreditAccount = mapper.readValue(CommonUtilities.getFileContent("lineofcredit_acc_details.json"), LineOfCreditAccount.class);
+		List<Object> accountJsonObject = new ArrayList<>();
+		accountJsonObject.add(depositAccount);accountJsonObject.add(loanAccounts);
+		accountJsonObject.add(investmentAccount);accountJsonObject.add(lineOfCreditAccount);
+
+		when(depositAccountsRepository.save(any())).thenReturn(depositAccount);
+		when(loanAccountsRepository.save(any())).thenReturn(loanAccounts);
+		when(investmentAccountsRepository.save(any())).thenReturn(investmentAccount);
+		when(lineOfCreditAccountsRepository.save(any())).thenReturn(lineOfCreditAccount);
+		when(accountConsentRepository.save(any())).thenReturn(new AccountConsent());
+		return accountJsonObject;
+	}
+
 	 @Test
 	 void testAddAccountsInvalidUserId() throws JsonMappingException, JsonProcessingException, JSONException {
 		 when(fdxUserRepository.findByUserId(any())).thenReturn(null);

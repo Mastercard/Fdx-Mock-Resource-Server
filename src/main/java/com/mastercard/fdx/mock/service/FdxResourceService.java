@@ -64,7 +64,7 @@ public class FdxResourceService {
 					.map(s-> new AccountListResponsePojo(s.getAccountCategory(), s.getInstitutionAccountId(), 
 					s.getAccountType(), s.getNickname(), s.getStatus(), s.getBalanceAsOf(), s.getAccountNumber(),
 					s.getAccountNumberDisplay(), s.getProductName(), s.getDescription(), s.getAccountOpenDate(), s.getAccountCloseDate(),
-					s.getCurrentBalance(),s.getOpeningDayBalance(),s.getPrincipalBalance(),s.getAvailableCashBalance())).collect(Collectors.toList());
+					s.getCurrentBalance(),s.getOpeningDayBalance(),s.getPrincipalBalance(),s.getAvailableCashBalance())).collect(Collectors.toList()); //NOSONAR
 		}
 		 Accounts accounts = new Accounts();
 		 accounts.setAccounts(result);
@@ -114,7 +114,7 @@ public class FdxResourceService {
 	}
 
 	private List<String> getAccountsIdFromToken(String authorization){
-		List<String> list = new ArrayList<String>();
+		List<String> list = new ArrayList<>();
 		JSONArray accountIds = JwtDecoderUtils.getAccountIdsFromToken(authorization);
 		if(Objects.nonNull(accountIds))
 			for (int i = 0; i < accountIds.length() ; i++){
@@ -140,14 +140,13 @@ public class FdxResourceService {
 		return new ResponseEntity<>(statementsResponse,HttpStatus.OK);
 	}
 	
-	public ResponseEntity getStatementsByStatementId(String accountId,String statementId) {
+	public ResponseEntity<Object> getStatementsByStatementId(String accountId,String statementId) {
 		if(Objects.isNull(accountsRepository.findByAccountId(accountId)))
 			return new ResponseEntity<>(new StatementsResponse(errorConfig.getAccountNotFoundErrorCode(), errorConfig.getAccountNotFoundErrorMsg()),HttpStatus.BAD_REQUEST);
 		
 		Statement statement =  statementRepository.findStatementByStatementId(statementId);
 		if(Objects.isNull(statement))
 			return new ResponseEntity<>(new StatementsResponse(errorConfig.getStatementNotFoundErrorCode(), errorConfig.getStatementNotFoundErrorMsg()),HttpStatus.BAD_REQUEST);
-		
 		
 		return new ResponseEntity<>(statement.getFile(),HttpStatus.OK);
 	}

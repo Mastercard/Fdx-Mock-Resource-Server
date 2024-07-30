@@ -1,6 +1,7 @@
-package com.mastercard.controller;
+package com.mastercard.fdx.mock.controller;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -8,9 +9,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mastercard.fdx.mock.dto.ErrorPojo;
+import com.mastercard.fdx.mock.exception.ApiException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -21,7 +26,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mastercard.fdx.mock.controller.FdxResourceServerController;
 import com.mastercard.fdx.mock.entity.AccountDescriptor;
 import com.mastercard.fdx.mock.dto.AccountListResponsePojo;
 import com.mastercard.fdx.mock.entity.AccountPaymentNetwork;
@@ -73,7 +77,7 @@ class FdxResourceServerControllerTest {
 	void testGetAccountsDetails() throws Exception {
 		mockMvc.perform(get("/fdx/v6/accounts/20001").headers(headers)).andExpect(status().isOk());
 	}
-	
+
 	@Test
 	void testGetContactDetails() throws Exception {
 		mockMvc.perform(get("/fdx/v6/accounts/20001/contact").headers(headers)).andExpect(status().isOk());
@@ -93,7 +97,7 @@ class FdxResourceServerControllerTest {
 		when(fdxResourceService.getTransactions(any())).thenReturn(transactions);
 		mockMvc.perform(get("/fdx/v6/accounts/20001/transactions").headers(headers)).andExpect(status().isOk());
 	}
-	
+
 	@Test
 	void testGetPaymentNetworksDetails() throws Exception {
 		List<AccountPaymentNetwork>  accountPaymentNetworks= new ArrayList<>();
@@ -114,10 +118,23 @@ class FdxResourceServerControllerTest {
 		when(fdxResourceService.getStatements(any())).thenReturn(new ResponseEntity<>(HttpStatus.OK));
 		mockMvc.perform(get("/fdx/v6/accounts/20001/statements").headers(headers)).andExpect(status().isOk());
 	}
-	
+
 	@Test
 	void testGetStatementByStatementId() throws Exception {
 		when(fdxResourceService.getStatementsByStatementId(any(),any())).thenReturn(new ResponseEntity<>(HttpStatus.OK));
 		mockMvc.perform(get("/fdx/v6/accounts/20001/statements/40001").headers(headers)).andExpect(status().isOk());
+	}
+
+	@ParameterizedTest
+	@ValueSource(strings = {"/fdx/v6/accounts/20001","/fdx/v6/accounts/20001/contact", "/fdx/v6/accounts/20001/transactions", "/fdx/v6/accounts/20001/payment-networks", "/fdx/v6/accounts/20001/statements/40001", "/fdx/v6/accounts/20001/statements"})
+	void testGetAccountsDetailsInvalid(String url) throws Exception {
+		getEx();
+		mockMvc.perform(get(url).headers(headers)).andExpect(status().is4xxClientError());
+	}
+
+	private void getEx() throws ApiException {
+		ErrorPojo errorPojo = new ErrorPojo(1002, "");
+		ApiException ex = new ApiException(HttpStatus.INTERNAL_SERVER_ERROR, errorPojo, "Unable to get accounts");
+		doThrow(ex).when(fdxResourceService).validateTokenWithRequestAccountId(any(), any());
 	}
 }

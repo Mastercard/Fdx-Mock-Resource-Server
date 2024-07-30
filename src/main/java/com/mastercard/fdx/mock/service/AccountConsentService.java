@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -37,9 +38,9 @@ public class AccountConsentService {
             return list.stream().map(s-> new AccountListResponsePojo(s.getAccountCategory(), s.getInstitutionAccountId(),
 					s.getAccountType(), s.getNickname(), s.getStatus(), s.getBalanceAsOf(), s.getAccountNumber(),
 					s.getAccountNumberDisplay(), s.getProductName(), s.getDescription(), s.getAccountOpenDate(), s.getAccountCloseDate(),s.getCurrentBalance(),
-					s.getOpeningDayBalance(),s.getPrincipalBalance(),s.getAvailableCashBalance())).collect(Collectors.toList());
+					s.getOpeningDayBalance(),s.getPrincipalBalance(),s.getAvailableCashBalance())).collect(Collectors.toList()); //NOSONAR
 		}
-		return null;
+		return Collections.emptyList();
 	}
 	
 	public AccountConsentResponse saveConsentAccount(AccountConsent accountConsent) {

@@ -9,7 +9,7 @@ import lombok.Getter;
 @Getter
 public class ApiException extends Exception{
 	private final HttpStatusCode code;
-	private ErrorPojo errorPojo;
+	private final ErrorPojo errorPojo;
 	public ApiException (HttpStatusCode code,ErrorPojo errorPojo ,String msg) {
 		super(msg);
 		this.code = code;

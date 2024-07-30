@@ -1,4 +1,4 @@
-package com.mastercard.controller;
+package com.mastercard.fdx.mock.controller;
 
 import com.mastercard.fdx.mock.controller.ApplicationCheckController;
 import org.junit.jupiter.api.Test;

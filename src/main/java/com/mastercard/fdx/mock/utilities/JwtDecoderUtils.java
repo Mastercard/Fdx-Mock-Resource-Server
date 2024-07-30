@@ -8,6 +8,8 @@ import org.json.JSONObject;
 @Slf4j
 public class JwtDecoderUtils {
 
+	private JwtDecoderUtils(){}
+
 	private static final String ACCOUNT_ID = "account_id";
 
 	public static JSONArray getAccountIdsFromToken(String jwtToken) {

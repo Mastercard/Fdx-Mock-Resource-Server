@@ -1,12 +1,15 @@
-package com.mastercard.service;
+package com.mastercard.fdx.mock.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -66,6 +69,15 @@ class AccountConsentServiceTest {
 		assertNotNull(response);
 		assertEquals(1, response.size());
 	}
+
+	@Test
+	void testGetAccountsByUserIdEmpty() {
+		when(accountConsentRepository.findAccountsByUserId(any())).thenReturn(null);
+
+		List<AccountListResponsePojo> response =  accountConsentService.getAccountsByUserId("fdxuser");
+		assertTrue(response.isEmpty());
+	}
+
 	
 	@Test
 	void testSaveConsentAccount() {
@@ -86,7 +98,15 @@ class AccountConsentServiceTest {
 		assertNotNull(response);
 		assertEquals(accountConsent.getConsentId(), response.getConsentId());
 	}
-	
+
+	@Test
+	void testUpdateConsentAccountEmpty() {
+		when(accountConsentRepository.findAccountsByConsentId(any())).thenReturn(Optional.ofNullable(null));
+		AccountConsentResponse response =  accountConsentService.updateConsentAccount(accountConsent,"testConsentId");
+		assertNull(response);
+	}
+
+
 	@Test
 	void testGetConsent() {
 		when(accountConsentRepository.findAccountsByConsentId(any())).thenReturn(Optional.ofNullable(accountConsent));

@@ -1,4 +1,4 @@
-package com.mastercard.service;
+package com.mastercard.fdx.mock.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -27,15 +27,15 @@ class FdxUserServiceTest {
 	void testGetUser() {
 		when(fdxUserRepository.findByUserId(any())).thenReturn(new FdxUser(1, "test", "testpwd", null));
 		ResponseEntity<FdxUser> response = fdxUserService.getUser("test");
-		assertEquals(response.getStatusCode(), HttpStatus.OK);
-		assertEquals(response.getBody().getUserId(), "test");
+		assertEquals(HttpStatus.OK, response.getStatusCode());
+		assertEquals("test", response.getBody().getUserId());
 	}
 	
 	@Test
 	void testGetUserNoUserFound() {
 		when(fdxUserRepository.findByUserId(any())).thenReturn(null);
 		ResponseEntity<FdxUser> response = fdxUserService.getUser("test");
-		assertEquals(response.getStatusCode(), HttpStatus.NOT_FOUND);
+		assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
 	}
 	
 	@Test
@@ -43,14 +43,14 @@ class FdxUserServiceTest {
 		when(fdxUserRepository.findByUserId(any())).thenReturn(null);
 		when(fdxUserRepository.save(any())).thenReturn(new FdxUser(2, "test1", "testpwd1", "testpwd1"));
 		ResponseEntity<FdxUser> response = fdxUserService.saveUser(new FdxUser(2, "test1", "testpwd1", "testpwd1"));
-		assertEquals(response.getStatusCode(), HttpStatus.OK);
-		assertEquals(response.getBody().getUserId(), "test1");
+		assertEquals(HttpStatus.OK, response.getStatusCode());
+		assertEquals("test1", response.getBody().getUserId());
 	}
 	
 	@Test
 	void testSaveUserError() {
 		when(fdxUserRepository.findByUserId(any())).thenReturn(new FdxUser(1, "test", "testpwd", null));
 		ResponseEntity<FdxUser> response = fdxUserService.saveUser(new FdxUser(1, "test", "testpwd", null));
-		assertEquals(response.getStatusCode(), HttpStatus.CONFLICT);
+		assertEquals(HttpStatus.CONFLICT, response.getStatusCode());
 	}
 }

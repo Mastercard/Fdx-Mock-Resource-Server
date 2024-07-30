@@ -10,6 +10,8 @@ import java.nio.charset.StandardCharsets;
 @Slf4j
 public class CommonUtilities {
 
+	private CommonUtilities() {}
+
 	private final static BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 	
 	private static final String RESOURCE_FOLDER_PATH = "json/";

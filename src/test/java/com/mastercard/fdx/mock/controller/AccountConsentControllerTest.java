@@ -1,4 +1,4 @@
-package com.mastercard.controller;
+package com.mastercard.fdx.mock.controller;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;

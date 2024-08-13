@@ -4,8 +4,7 @@
 Mastercard Developer Hub documentation: https://developer.mastercard.com/fdx-dev-hub/documentation
 
 ## Description
-The Resource Server is designed to provide secure and standardized access to the financial data of banks and financial institutions (FIs) in compliance with the Financial Data Exchange (FDX) version 6.0 standard. 
-This server acts as a central hub for accessing account information, transaction details, payment network information, and other related data for authorized users.
+The Resource Server is your gateway to secure and standardized financial data access, fully compliant with the latest Financial Data Exchange (FDX) 6.0 standard. This powerful server serves as a central hub, providing authorized users with seamless access to account information, transaction details, payment network data, and more, all designed to meet the needs of banks and financial institutions.
 
 ## Features
 
@@ -43,7 +42,7 @@ This server acts as a central hub for accessing account information, transaction
 3. Once the valid token is updated in the environment variable, you can hit the API endpoints to get the responses.
 
 ## Instructions for Building a Docker Image
-1. Uncomment the below properties from the application.properties (https://github.com/Mastercard/Fdx-Mock-Resource-Server/blob/main/src/main/resources/application.properties) so that the resource server can interact with the authorization server running on the docker container.
+1. Uncomment the below properties from the [application.properties](https://github.com/Mastercard/Fdx-Mock-Resource-Server/blob/main/src/main/resources/application.properties) so that the resource server can interact with the authorization server running on the docker container.
     1. mock.auth.issuer.url=http://localhost:8080
     2. mock.auth.server.url=http://fdx.mock.auth.server:8080
 2. Navigate into the project's root directory which contains the Dockerfile & build the Docker image using the Docker build command. 

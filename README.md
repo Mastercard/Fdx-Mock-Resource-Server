@@ -1,10 +1,12 @@
 
 # FDX Resource Server
 
-Mastercard Developer Hub documentation: https://developer.mastercard.com/fdx-dev-hub/documentation
+### Mastercard Developer Hub documentation: https://developer.mastercard.com/fdx-dev-hub/documentation
 
 ## Description
 The Resource Server is your gateway to secure and standardized financial data access, fully compliant with the latest Financial Data Exchange (FDX) 6.0 standard. This powerful server serves as a central hub, providing authorized users with seamless access to account information, transaction details, payment network data, and more, all designed to meet the needs of banks and financial institutions.
+
+### FDX Authorization Server: https://github.com/Mastercard/Fdx-Mock-Auth-Server
 
 ## Features
 

@@ -25,10 +25,10 @@ The Resource Server is your gateway to secure and standardized financial data ac
 7. **Statements Details**: `/accounts/{account_id}/statements/{statement_id}` - Returns account statements information for a specific statement ID.
 
 ## Prerequisites
-1. An IDE that supports Java 17 or above (e.g., Eclipse, IntelliJ, STS).
+1. An IDE that supports Java 17 or above (e.g., Eclipse, IntelliJ IDEA, Spring Tool Suite).
 2. Java installed on your local system.
-3. Postman installed on your local system.
-4. Docker: Install Docker (Required only for running in docker)
+3. [Postman](https://www.postman.com/downloads/) installed on your local system.
+4. Docker: [Install Docker](https://www.docker.com/products/docker-desktop/) (Required only for running in docker)
 
 ## Installation Instructions
 1. Download the project from GitHub.

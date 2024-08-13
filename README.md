@@ -42,7 +42,7 @@ The Resource Server is your gateway to secure and standardized financial data ac
 3. Once the valid token is updated in the environment variable, you can hit the API endpoints to get the responses.
 
 ## Instructions for Building a Docker Image
-1. Uncomment the below properties from the [application.properties](https://github.com/Mastercard/Fdx-Mock-Resource-Server/blob/main/src/main/resources/application.properties) so that the resource server can interact with the authorization server running on the docker container.
+1. Uncomment the below properties from the [application.properties](https://github.com/Mastercard/Fdx-Mock-Resource-Server/blob/main/src/main/resources/application.properties) so that the resource server can interact with the [FDX Authorization server](https://github.com/Mastercard/Fdx-Mock-Auth-Server) running on the docker container.
     1. mock.auth.issuer.url=http://localhost:8080
     2. mock.auth.server.url=http://fdx.mock.auth.server:8080
 2. Navigate into the project's root directory which contains the Dockerfile & build the Docker image using the Docker build command. 

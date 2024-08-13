@@ -1,8 +1,10 @@
 
-# Fdx-Mock-Resource-Server
+# FDX Resource Server
+
+Mastercard Developer Hub documentation: https://developer.mastercard.com/fdx-dev-hub/documentation
 
 ## Description
-This Mock Resource Server is designed to provide secure and standardized access to financial data of banks and financial institutions (FIs) in compliance with the Financial Data Exchange (FDX) version 6.0 standard. 
+The Resource Server is designed to provide secure and standardized access to the financial data of banks and financial institutions (FIs) in compliance with the Financial Data Exchange (FDX) version 6.0 standard. 
 This server acts as a central hub for accessing account information, transaction details, payment network information, and other related data for authorized users.
 
 ## Features
@@ -41,16 +43,16 @@ This server acts as a central hub for accessing account information, transaction
 3. Once the valid token is updated in the environment variable, you can hit the API endpoints to get the responses.
 
 ## Instructions for Building a Docker Image
-1. Uncomment the below properties so that the resource server can interact with the authorization server running on the docker container.
+1. Uncomment the below properties from the application.properties (https://github.com/Mastercard/Fdx-Mock-Resource-Server/blob/main/src/main/resources/application.properties) so that the resource server can interact with the authorization server running on the docker container.
     1. mock.auth.issuer.url=http://localhost:8080
     2. mock.auth.server.url=http://fdx.mock.auth.server:8080
-2. Build the Docker image using the Docker build command. Run this command from the directory containing the Dockerfile.
+2. Navigate into the project's root directory which contains the Dockerfile & build the Docker image using the Docker build command. 
     1. "docker build -t fdx-mock-resource-server ."
 3. Verify that the Docker image was successfully created. You should see <image-name> listed in the output.
 4. Since both servers will be running on Docker containers, their hosts will be localhost.
    Each Docker container runs in its own isolated network namespace. The localhost within docker1 refers to docker1 itself, not to docker2. They will not be able to interact with each other.
 5. To establish communication between Docker containers (docker1 and docker2) using Docker's port mapping (publishing ports).
-   Create a user-defined bridge network, make sure both containers are connected to the same network and that they can resolve each other's container names.
+   Create a user-defined bridge network, make sure both containers are connected to the same network, and that they can resolve each other's container names.
 6. Commands to create a custom network and run the containers are :
     1. `docker network create my-network`
     2. `docker run -d --network=my-network -p 8080:8080 --name fdx.mock.auth.server fdx-mock-auth-server`

@@ -37,7 +37,7 @@ The Resource Server is your gateway to secure and standardized financial data ac
 6. You can now use the imported collection to send requests to the API endpoints and observe the responses.
 
 ## Usage
-1. To run the API, you need an authorization token from the `Fdx-Mock-Auth-Server` project. Refer to the README file of the `Fdx-Mock-Auth-Server` project for details.
+1. To run the APIs in the Resource server, you need an authorization token from the [FDX Authorization server](https://github.com/Mastercard/Fdx-Mock-Auth-Server) project. Refer to the [README file](https://github.com/Mastercard/Fdx-Mock-Auth-Server/blob/main/README.md) of the `Fdx-Mock-Auth-Server` project for details.
 2. Update the authorization token in the environment variable `authorize_token`.
 3. Once the valid token is updated in the environment variable, you can hit the API endpoints to get the responses.
 

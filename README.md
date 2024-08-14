@@ -1,5 +1,5 @@
 
-# FDX Resource Server
+# FDX Mock Resource Server
 
 #### Mastercard Developer Hub documentation: https://developer.mastercard.com/fdx-dev-hub/documentation
 

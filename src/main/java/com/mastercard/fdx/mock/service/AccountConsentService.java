@@ -1,14 +1,5 @@
 package com.mastercard.fdx.mock.service;
 
-import com.mastercard.fdx.mock.dto.AccountConsentResponse;
-import com.mastercard.fdx.mock.repository.AccountConsentRepository;
-import com.mastercard.fdx.mock.repository.AccountsRepository;
-import com.mastercard.fdx.mock.entity.AccountConsent;
-import com.mastercard.fdx.mock.entity.AccountDescriptor;
-import com.mastercard.fdx.mock.dto.AccountListResponsePojo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.sql.Timestamp;
 import java.util.Collections;
 import java.util.List;
@@ -17,6 +8,17 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.mastercard.fdx.mock.dto.AccountConsentRequestDTO;
+import com.mastercard.fdx.mock.dto.AccountConsentResponse;
+import com.mastercard.fdx.mock.dto.AccountListResponsePojo;
+import com.mastercard.fdx.mock.entity.AccountConsent;
+import com.mastercard.fdx.mock.entity.AccountDescriptor;
+import com.mastercard.fdx.mock.repository.AccountConsentRepository;
+import com.mastercard.fdx.mock.repository.AccountsRepository;
 
 @Service
 public class AccountConsentService {
@@ -43,18 +45,18 @@ public class AccountConsentService {
 		return Collections.emptyList();
 	}
 	
-	public AccountConsentResponse saveConsentAccount(AccountConsent accountConsent) {
+	public AccountConsentResponse saveConsentAccount(AccountConsentRequestDTO accountConsent) {
 		Optional<AccountConsent> accountsFromDB = Optional.ofNullable(accountConsentRepository.findAccountsByUserId(accountConsent.getUserId()));
 		String newConsentId = UUID.randomUUID().toString();
 		return getAccountConsentResponse(accountConsent, accountsFromDB, newConsentId);
 	}
 
-	public AccountConsentResponse updateConsentAccount(AccountConsent consent, String consentId) {
+	public AccountConsentResponse updateConsentAccount(AccountConsentRequestDTO consent, String consentId) {
 		Optional<AccountConsent> accountsFromDB = accountConsentRepository.findAccountsByConsentId(consentId);
 		return getAccountConsentResponse(consent, accountsFromDB, null);
 	}
 
-	private AccountConsentResponse getAccountConsentResponse(AccountConsent accountConsent,
+	private AccountConsentResponse getAccountConsentResponse(AccountConsentRequestDTO accountConsent,
 			Optional<AccountConsent> accountsFromDB, String newConsentId) {
 		if(accountsFromDB.isPresent()) {
 			if(newConsentId != null) {

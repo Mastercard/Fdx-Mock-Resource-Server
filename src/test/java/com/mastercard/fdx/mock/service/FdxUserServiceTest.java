@@ -12,9 +12,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import com.mastercard.fdx.mock.repository.FdxUserRepository;
+import com.mastercard.fdx.mock.dto.FdxUserRequestDTO;
+import com.mastercard.fdx.mock.dto.FdxUserResponseDTO;
 import com.mastercard.fdx.mock.entity.FdxUser;
-import com.mastercard.fdx.mock.service.FdxUserService;
+import com.mastercard.fdx.mock.repository.FdxUserRepository;
 
 @ExtendWith(MockitoExtension.class)
 class FdxUserServiceTest {
@@ -26,7 +27,7 @@ class FdxUserServiceTest {
 	@Test
 	void testGetUser() {
 		when(fdxUserRepository.findByUserId(any())).thenReturn(new FdxUser(1, "test", "testpwd", null));
-		ResponseEntity<FdxUser> response = fdxUserService.getUser("test");
+		ResponseEntity<FdxUserResponseDTO> response = fdxUserService.getUser("test");
 		assertEquals(HttpStatus.OK, response.getStatusCode());
 		assertEquals("test", response.getBody().getUserId());
 	}
@@ -34,7 +35,7 @@ class FdxUserServiceTest {
 	@Test
 	void testGetUserNoUserFound() {
 		when(fdxUserRepository.findByUserId(any())).thenReturn(null);
-		ResponseEntity<FdxUser> response = fdxUserService.getUser("test");
+		ResponseEntity<FdxUserResponseDTO> response = fdxUserService.getUser("test");
 		assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
 	}
 	
@@ -42,7 +43,7 @@ class FdxUserServiceTest {
 	void testSaveUser() {
 		when(fdxUserRepository.findByUserId(any())).thenReturn(null);
 		when(fdxUserRepository.save(any())).thenReturn(new FdxUser(2, "test1", "testpwd1", "testpwd1"));
-		ResponseEntity<FdxUser> response = fdxUserService.saveUser(new FdxUser(2, "test1", "testpwd1", "testpwd1"));
+		ResponseEntity<FdxUserResponseDTO> response = fdxUserService.saveUser(new FdxUserRequestDTO("test1", "testpwd1", "testpwd1"));
 		assertEquals(HttpStatus.OK, response.getStatusCode());
 		assertEquals("test1", response.getBody().getUserId());
 	}
@@ -50,7 +51,7 @@ class FdxUserServiceTest {
 	@Test
 	void testSaveUserError() {
 		when(fdxUserRepository.findByUserId(any())).thenReturn(new FdxUser(1, "test", "testpwd", null));
-		ResponseEntity<FdxUser> response = fdxUserService.saveUser(new FdxUser(1, "test", "testpwd", null));
+		ResponseEntity<FdxUserResponseDTO> response = fdxUserService.saveUser(new FdxUserRequestDTO( "test", "testpwd", null));
 		assertEquals(HttpStatus.CONFLICT, response.getStatusCode());
 	}
 }

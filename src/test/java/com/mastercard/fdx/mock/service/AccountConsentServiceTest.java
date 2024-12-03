@@ -9,7 +9,6 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,13 +19,13 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import com.mastercard.fdx.mock.dto.AccountConsentRequestDTO;
 import com.mastercard.fdx.mock.dto.AccountConsentResponse;
-import com.mastercard.fdx.mock.repository.AccountConsentRepository;
-import com.mastercard.fdx.mock.repository.AccountsRepository;
+import com.mastercard.fdx.mock.dto.AccountListResponsePojo;
 import com.mastercard.fdx.mock.entity.AccountConsent;
 import com.mastercard.fdx.mock.entity.AccountDescriptor;
-import com.mastercard.fdx.mock.dto.AccountListResponsePojo;
-import com.mastercard.fdx.mock.service.AccountConsentService;
+import com.mastercard.fdx.mock.repository.AccountConsentRepository;
+import com.mastercard.fdx.mock.repository.AccountsRepository;
 
 @ExtendWith(MockitoExtension.class)
 class AccountConsentServiceTest {
@@ -42,9 +41,12 @@ class AccountConsentServiceTest {
 	
 	AccountConsent accountConsent;
 	
+	AccountConsentRequestDTO accountConsentRequestDTO;
+	
 	@BeforeEach
 	void setUp() {
 		accountConsent = new AccountConsent();
+		accountConsentRequestDTO = new AccountConsentRequestDTO();
 		accountConsent.setAccountIds(Arrays.asList("10001","20001"));
 		accountConsent.setAllAccountIds(Arrays.asList("10001","20001"));
 		accountConsent.setConsentId("testConsentId");
@@ -84,7 +86,7 @@ class AccountConsentServiceTest {
 		when(accountConsentRepository.findAccountsByUserId(any())).thenReturn(accountConsent);
 		when(accountConsentRepository.save(any())).thenReturn(accountConsent);
 		
-		AccountConsentResponse response =  accountConsentService.saveConsentAccount(accountConsent);
+		AccountConsentResponse response =  accountConsentService.saveConsentAccount(accountConsentRequestDTO);
 		assertNotNull(response);
 		assertEquals(accountConsent.getConsentId(), response.getConsentId());
 	}
@@ -94,7 +96,7 @@ class AccountConsentServiceTest {
 		when(accountConsentRepository.findAccountsByConsentId(any())).thenReturn(Optional.ofNullable(accountConsent));
 		when(accountConsentRepository.save(any())).thenReturn(accountConsent);
 		
-		AccountConsentResponse response =  accountConsentService.updateConsentAccount(accountConsent,"testConsentId");
+		AccountConsentResponse response =  accountConsentService.updateConsentAccount(accountConsentRequestDTO,"testConsentId");
 		assertNotNull(response);
 		assertEquals(accountConsent.getConsentId(), response.getConsentId());
 	}
@@ -102,7 +104,7 @@ class AccountConsentServiceTest {
 	@Test
 	void testUpdateConsentAccountEmpty() {
 		when(accountConsentRepository.findAccountsByConsentId(any())).thenReturn(Optional.ofNullable(null));
-		AccountConsentResponse response =  accountConsentService.updateConsentAccount(accountConsent,"testConsentId");
+		AccountConsentResponse response =  accountConsentService.updateConsentAccount(accountConsentRequestDTO,"testConsentId");
 		assertNull(response);
 	}
 

@@ -20,7 +20,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mastercard.fdx.mock.controller.FdxUserDetailsController;
+import com.mastercard.fdx.mock.dto.FdxUserResponseDTO;
 import com.mastercard.fdx.mock.entity.FdxUser;
 import com.mastercard.fdx.mock.service.FdxUserService;
 
@@ -46,27 +46,27 @@ class FdxUserDetailsControllerTest {
 	
 	@Test
 	void testGetUserByUserId() throws Exception {
-		when(fdxUserService.getUser(any())).thenReturn(new ResponseEntity<FdxUser> (new FdxUser(1, "fdxuser", "dfdff325dvssfasfs", "test"),HttpStatus.OK));
+		when(fdxUserService.getUser(any())).thenReturn(new ResponseEntity<FdxUserResponseDTO> (new FdxUserResponseDTO("fdxuser", "dfdff325dvssfasfs"),HttpStatus.OK));
 		mockMvc.perform(get("/user/fdxuser").headers(headers)).andExpect(status().isOk());
 	}
 	
 	@Test
 	void testGetUserByUserIdNoUserFound() throws Exception {
-		when(fdxUserService.getUser(any())).thenReturn(new ResponseEntity<FdxUser> (new FdxUser(),HttpStatus.BAD_REQUEST));
+		when(fdxUserService.getUser(any())).thenReturn(new ResponseEntity<FdxUserResponseDTO> (new FdxUserResponseDTO(),HttpStatus.BAD_REQUEST));
 		mockMvc.perform(get("/user/fdxuser").headers(headers)).andExpect(status().isBadRequest());
 	}
 	
 	@Test
 	void testSaveUser() throws Exception {
 		FdxUser fdxuser =  new FdxUser(1, "fdxuser", null, "test");
-		when(fdxUserService.saveUser(any())).thenReturn((new ResponseEntity<FdxUser> (new FdxUser(1, "fdxuser", "dfdff325dvssfasfs", "test"),HttpStatus.OK)));
+		when(fdxUserService.saveUser(any())).thenReturn((new ResponseEntity<FdxUserResponseDTO> (new FdxUserResponseDTO("fdxuser", "dfdff325dvssfasfs"),HttpStatus.OK)));
 		mockMvc.perform(post("/user").headers(headers).contentType(MediaType.APPLICATION_JSON).content(objectMapper.writeValueAsString(fdxuser))).andExpect(status().isOk());
 	}
 	
 	@Test
 	void testSaveUserAlredayExist() throws Exception {
 		FdxUser fdxuser =  new FdxUser(1, "fdxuser", null, "test");
-		when(fdxUserService.saveUser(any())).thenReturn((new ResponseEntity<FdxUser> (new FdxUser(1, "fdxuser", "dfdff325dvssfasfs", "test"),HttpStatus.CONFLICT)));
+		when(fdxUserService.saveUser(any())).thenReturn((new ResponseEntity<FdxUserResponseDTO> (new FdxUserResponseDTO( "fdxuser", "dfdff325dvssfasfs"),HttpStatus.CONFLICT)));
 		mockMvc.perform(post("/user").headers(headers).contentType(MediaType.APPLICATION_JSON).content(objectMapper.writeValueAsString(fdxuser))).andExpect(status().isConflict());
 	}
 }

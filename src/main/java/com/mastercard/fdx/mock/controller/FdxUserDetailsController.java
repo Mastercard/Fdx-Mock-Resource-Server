@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mastercard.fdx.mock.entity.FdxUser;
+import com.mastercard.fdx.mock.dto.FdxUserRequestDTO;
+import com.mastercard.fdx.mock.dto.FdxUserResponseDTO;
 import com.mastercard.fdx.mock.service.FdxUserService;
 
 @RestController
@@ -27,7 +28,7 @@ public class FdxUserDetailsController {
 	 * @return
 	 */
 	@GetMapping("/{userId}")
-	public ResponseEntity<FdxUser> getUser(@RequestHeader(value = "Authorization") String authorization ,
+	public ResponseEntity<FdxUserResponseDTO> getUser(@RequestHeader(value = "Authorization") String authorization ,
 			@PathVariable String userId) {
 		return fdxUserService.getUser(userId);
 	}
@@ -39,9 +40,9 @@ public class FdxUserDetailsController {
 	 * @return
 	 */
 	@PostMapping("")
-	public ResponseEntity<FdxUser> saveUser(@RequestHeader(value = "Authorization") String authorization,
-			@RequestBody FdxUser fdxUser) {
-		return fdxUserService.saveUser(fdxUser);
+	public ResponseEntity<FdxUserResponseDTO> saveUser(@RequestHeader(value = "Authorization") String authorization,
+			@RequestBody FdxUserRequestDTO fdxUserRequestDTO) {
+		return fdxUserService.saveUser(fdxUserRequestDTO);
 	}
 
 

@@ -16,6 +16,11 @@ import java.util.Date;
 @NoArgsConstructor
 public class AccountListResponsePojo extends ErrorPojo{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private String accountCategory;
 
 	@JsonProperty("accountId")

@@ -30,7 +30,7 @@ import lombok.Setter;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)
 @ApiModel(value = "User")
-public class FdxUser extends ErrorPojo{
+public class FdxUser{
 	
 	@JsonIgnore
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

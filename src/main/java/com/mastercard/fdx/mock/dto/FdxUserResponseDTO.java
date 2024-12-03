@@ -1,7 +1,5 @@
 package com.mastercard.fdx.mock.dto;
 
-import java.sql.Timestamp;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,18 +7,16 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-public class AccountConsentResponse extends ErrorPojo{
+@NoArgsConstructor
+public class FdxUserResponseDTO extends ErrorPojo{
 
-    /**
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	 private String userId;
+	 private String passwordHash;
+	
 
-	private String customerId;
-
-    private String consentId;
-
-    private Timestamp endDate;
 }

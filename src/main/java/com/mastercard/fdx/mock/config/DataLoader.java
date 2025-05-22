@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
+import jakarta.transaction.Transactional;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -65,6 +66,7 @@ public class DataLoader {
      * @return
      */
     @Bean
+    @Transactional
     CommandLineRunner runner(AccountsRepository accountsRepository,
                              DepositAccountsRepository depositAccountsRepository,
                              LoanAccountsRepository loanAccountsRepository, InvestmentAccountsRepository investmentAccountsRepository,
@@ -108,11 +110,11 @@ public class DataLoader {
                                 FdxUserRepository fdxUserRepository, ObjectMapper mapper,StatementRepository statementRepository)
             throws IOException {
         // 1. Create user
-        FdxUser fdxUser = new FdxUser(1, "fdxuser", CommonUtilities.encrypthash(pwd),null);
-        fdxUserRepository.save(fdxUser);
+        FdxUser fdxUser = new FdxUser(0, "fdxuser", CommonUtilities.encrypthash(pwd),null);
+        fdxUser = fdxUserRepository.save(fdxUser);
 
         //2. saving account for profile of fdxuser...
-        AccountConsent accountConsent = new AccountConsent(1,"fdxuser", Arrays.asList("10001","20001","3746272","5326884"),null,0,"");
+        AccountConsent accountConsent = new AccountConsent(0,"fdxuser", Arrays.asList("10001","20001","3746272","5326884"),null,0,"");
         consentRepository.save(accountConsent);
 
         LoanAccount loanAccounts = mapper.readValue(CommonUtilities.getFileContent("loan_acc_details.json"), LoanAccount.class);
@@ -183,11 +185,11 @@ public class DataLoader {
                                  FdxUserRepository fdxUserRepository, ObjectMapper mapper)
             throws JsonProcessingException, JsonMappingException {
         // 1. Create user
-        FdxUser fdxUser = new FdxUser(2, "fdxuser1", CommonUtilities.encrypthash(pwd),null);
+        FdxUser fdxUser = new FdxUser(0, "fdxuser1", CommonUtilities.encrypthash(pwd),null);
         fdxUserRepository.save(fdxUser);
 
         //2. saving account for profile of fdxuser1...
-        AccountConsent accountConsent = new AccountConsent(2,"fdxuser1", Arrays.asList("6468990","4568922","500011"),null,0,"");
+        AccountConsent accountConsent = new AccountConsent(0,"fdxuser1", Arrays.asList("6468990","4568922","500011"),null,0,"");
         consentRepository.save(accountConsent);
 
         LoanAccount loanAccounts = mapper.readValue(CommonUtilities.getFileContent("profile1/loan_acc_details1.json"), LoanAccount.class);
@@ -231,11 +233,11 @@ public class DataLoader {
                                  FdxUserRepository fdxUserRepository, ObjectMapper mapper)
             throws JsonProcessingException, JsonMappingException {
         // 1. Create user
-        FdxUser fdxUser = new FdxUser(3, "fdxuser2", CommonUtilities.encrypthash(pwd),null);
+        FdxUser fdxUser = new FdxUser(0, "fdxuser2", CommonUtilities.encrypthash(pwd),null);
         fdxUserRepository.save(fdxUser);
 
         //2. saving account for profile of fdxuser1...
-        AccountConsent accountConsent = new AccountConsent(3,"fdxuser2", Arrays.asList("789055","600011"),null,0,"");
+        AccountConsent accountConsent = new AccountConsent(0,"fdxuser2", Arrays.asList("789055","600011"),null,0,"");
         consentRepository.save(accountConsent);
 
         LoanAccount loanAccounts = mapper.readValue(CommonUtilities.getFileContent("profile2/loan_acc_details2.json"), LoanAccount.class);
@@ -266,11 +268,11 @@ public class DataLoader {
 			FdxUserRepository fdxUserRepository, ObjectMapper mapper) throws JsonMappingException, JsonProcessingException {
     	
     	 // 1. Create user
-        FdxUser fdxUser = new FdxUser(4, "fdxuser3", CommonUtilities.encrypthash(pwd),null);
+        FdxUser fdxUser = new FdxUser(0, "fdxuser3", CommonUtilities.encrypthash(pwd),null);
         fdxUserRepository.save(fdxUser);
 
         //2. saving account for profile of fdxuser3 with all closed accounts...
-        AccountConsent accountConsent = new AccountConsent(4,"fdxuser3", Arrays.asList("450022","4023555"),null,0,"");
+        AccountConsent accountConsent = new AccountConsent(0,"fdxuser3", Arrays.asList("450022","4023555"),null,0,"");
         consentRepository.save(accountConsent);
 
         LoanAccount loanAccounts = mapper.readValue(CommonUtilities.getFileContent("profile3/loan_acc_details3.json"), LoanAccount.class);

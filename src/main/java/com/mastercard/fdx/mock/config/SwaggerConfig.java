@@ -1,5 +1,6 @@
 package com.mastercard.fdx.mock.config;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
@@ -13,6 +14,7 @@ import io.swagger.v3.oas.models.security.SecurityScheme;
 import io.swagger.v3.oas.models.servers.Server;
 
 @Configuration
+@OpenAPIDefinition
 public class SwaggerConfig {
 
 
